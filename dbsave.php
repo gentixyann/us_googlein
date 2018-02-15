@@ -16,11 +16,8 @@ if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empt
      try {
          $sql = "SELECT COUNT(*) as `cnt` FROM `whereis_members` WHERE `email`=?";
          
-         //$sql = "SELECT COUNT(*) as `cnt` FROM `whereis_members` WHERE `email`=?";
-         
          //sql文実行
  $data = array($_GET["userEmail"]);
-         
  $stmt = $dbh->prepare($sql);
  $stmt->execute($data);
 
@@ -30,8 +27,7 @@ if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empt
          
          if ($count['cnt'] > 0) {
   //重複エラー
-           header('Location: json_map.html');
-           exit();
+           
  }else{
          
          
@@ -49,9 +45,6 @@ if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empt
   // // unset 指定した変数を削除するという意味。SESSIONじゃなくても使える
   //       unset($_POST["join"]);
 
-  // ログインページへ遷移
-       header('Location: json_map.html');
-        exit();
          }
 
       } catch (Exception $e) {
