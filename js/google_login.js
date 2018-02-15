@@ -5,6 +5,8 @@ var user;
 // Get a reference to the database service
 var database = firebase.database();
 
+
+
 //googleボタンで発動する関数
 function onSignIn(googleUser) {
 firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -26,10 +28,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
     var id_token = googleUser.getAuthResponse().id_token;
     console.log("ID Token: " + id_token);
     //You have your data in the variable `id_token`. Now send this to your server to be stored 
-    
-    
-    
-    
+        
   // This gives you a Google Access Token. You can use it to access the Google API.
   var token = result.credential.accessToken;
   // The signed-in user info.
@@ -51,8 +50,7 @@ sendDb(userID, userName, userEmail, imageUrl);
   // The firebase.auth.AuthCredential type that was used.
   var credential = error.credential;
   // ...
-});
-    
+});   
 }
 
 

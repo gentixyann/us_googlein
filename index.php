@@ -18,7 +18,7 @@
     <meta name="Nova theme" content="width=device-width, initial-scale=1">
 
     <!--    Goodle クライアントID-->
-    <meta name="google-signin-client_id" content="240833439190-qdmdmrutd3i1ve5gn52lo1k7eqee6nic.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="1028844914150-vequeee5hlji30ij1ci4v8ebdva5o42v.apps.googleusercontent.com">
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -113,7 +113,8 @@
 <script>
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDVezH32ZycwFc8mHGYyhQgK0ovBgX1WGY",
+    //apiKey: "AIzaSyDVezH32ZycwFc8mHGYyhQgK0ovBgX1WGY",
+    apiKey: "AIzaSyDStsWYUik9kLI-hbkIPQxSsBX-X-smIlw",  
     authDomain: "where-map-e3a10.firebaseapp.com",
     databaseURL: "https://where-map-e3a10.firebaseio.com",
     projectId: "where-map-e3a10",
