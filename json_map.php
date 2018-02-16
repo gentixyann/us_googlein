@@ -21,8 +21,6 @@ var_dump($_SESSION['userID']);
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
    
     <meta name="Nova theme" content="width=device-width, initial-scale=1">
-<!--    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"/>-->
-    
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
@@ -47,7 +45,6 @@ var_dump($_SESSION['userID']);
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-<!--<script src="data.js"></script>-->
 </head>
 
 
@@ -56,10 +53,14 @@ var_dump($_SESSION['userID']);
        <a class="navbar-brand logo" href="#"></a>
        
     <div class=" topnav" id="myTopnav">
-      <a href="#">Logout</a>
+      <a href="index.php">Logout</a>
        <a href="#">Contact</a>
+       
+       <?php if (isset($_SESSION["userID"])){ ?>
        <a href="#">MyPage</a>
        <a href="post.php">POST</a>
+       <?php } ?>
+       
        <a class="active" href="#">*MAP*</a>
        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
