@@ -47,7 +47,7 @@ body {
 }
 
 .navbar-brand{
-    background: url("img/logo04.png") no-repeat left center;
+    background: url("../img/logo04.png") no-repeat left center;
   background-size: contain;
 
   width: 40%;

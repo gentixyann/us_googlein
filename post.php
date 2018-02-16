@@ -85,7 +85,7 @@ if(isset($_POST) && !empty($_POST["lat"]) && !empty($_POST["lng"]) && !empty($_P
        <a href="#">Contact</a>
        <a href="#">MyPage</a>
        <a class="active" href="#">POST</a>
-       <a href="#">*MAP*</a>
+       <a href="json_map.php">*MAP*</a>
        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>  
   </header>
@@ -131,10 +131,6 @@ if(isset($_POST) && !empty($_POST["lat"]) && !empty($_POST["lng"]) && !empty($_P
                         <tr class="info">
                             <td>住所</td>
                             <td id="id_address"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
                         </tr>
                     </table>
 
