@@ -1,12 +1,11 @@
 <?php
-
+session_start();
 
 
 
 // DBに接続
   require('dbconnect.php');
 
-//var_dump($_GET);
 if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empty($_GET["userEmail"]))
 {
    $nick_name = $_GET['userName'];
@@ -40,10 +39,6 @@ if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empt
         $data = array($nick_name,$email,sha1($password));
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
-
-  // $_SESSIONの情報を削除
-  // // unset 指定した変数を削除するという意味。SESSIONじゃなくても使える
-  //       unset($_POST["join"]);
 
          }
 
