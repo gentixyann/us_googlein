@@ -59,7 +59,7 @@ var_dump($_SESSION['userID']);
       <a href="#">Logout</a>
        <a href="#">Contact</a>
        <a href="#">MyPage</a>
-       <a href="#">POST</a>
+       <a href="post.php">POST</a>
        <a class="active" href="#">*MAP*</a>
        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>

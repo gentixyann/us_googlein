@@ -1,27 +1,29 @@
 <?php
+session_start();
 
 //DBに接続
 require('dbconnect.php');
 
 if(isset($_POST) && !empty($_POST["lat"]) && !empty($_POST["lng"]) && !empty($_POST["iframe"]) && !empty($_POST["address"])){
   //trim関数 文字列の両端の空白を削除
+    $member_id = $_SESSION['userID'];
     $lat = trim($_POST['lat']);
      $lng = trim($_POST['lng']);
      $iframe = trim($_POST['iframe']);
     $address = trim($_POST['address']);
-
+    
     
   try{
 //DBに動画情報を登録するSQL文
   //now() MySQLが用意した関数。現在日時を取得。
-  $sql = " INSERT INTO `map`(`lat`, `lng`,
-  `iframe`, `address`, `created`)
-   VALUES ('$lat','$lng','$iframe','$address',now() )";
+  $sql = " INSERT INTO `whereis_map`(`member_id`, `lat`, `lng`,
+  `movie_info`, `address`, `created`)
+   VALUES ('$member_id', '$lat','$lng','$iframe','$address',now() )";
 
       
   //SQL文実行
    //sha1 暗号化行う関数
-   $data = array($lat, $lng, $iframe, $address);
+   $data = array($member_id, $lat, $lng, $iframe, $address);
 
 // print $sql."<br />\n";
 // var_dump($data);
@@ -35,46 +37,6 @@ if(isset($_POST) && !empty($_POST["lat"]) && !empty($_POST["lng"]) && !empty($_P
 
   }
 }
-
-try{
-
- //markerしてる人の情報とる
-    $sql = "SELECT * FROM `map` ";
-
-    //sql実行
-    //実行待ち
-    $stmt = $dbh->prepare($sql);
-    //実行
-    $stmt->execute();
-
-   
-
-      //PDOはPHP Data Objects FETCH_ASSOCは連想配列で取り出す意味
-    $marker_data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    //echo json_encode($marker_data);
-
-
-     while (1) {
-
-       //PDOはPHP Data Objects FETCH_ASSOCは連想配列で取り出す意味
-     $marker_data = $stmt->fetch(PDO::FETCH_ASSOC);
-         
-        // var_dump($marker_data);
-        $json = json_encode($marker_data, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
-        //var_dump($json);
-
-     if ($marker_data == false){
-         break;//中断する
-     }
-   }
-
-
-
-}catch(Exception $e){
-
-  }
-
 
 
 
@@ -113,15 +75,9 @@ try{
 
     <body>
 
-        <!-- Navigation
-    ================================================== -->
         <div class="hero-background">
-            
-  
-  
-  
+          
   <header>
-   
        <a class="navbar-brand logo" href="#"></a>
        
     <div class=" topnav" id="myTopnav">
@@ -131,27 +87,12 @@ try{
        <a class="active" href="#">POST</a>
        <a href="#">*MAP*</a>
        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
-    </div>
-  
+    </div>  
   </header>
   
 
-
-
-
-
-
-
-
             <div class="container">
-                <!--navigation-->
-
-
-                <!-- Hero-Section
-          ================================================== -->
-
                 <div class="hero row">
-                    <!--             <h1>POST<small>ここで投稿して</small></h1>-->
                     <div class="row">
                         <div class="col-md-6">
                             <h1>POST<small>ここで投稿して</small></h1>
@@ -160,7 +101,6 @@ try{
                             <h1><a href="https://www.youtube.com" target="_blank"><img src="img/yt_logo.png" width="200" height="40"></a></h1>
                         </div>
                     </div>
-
 
                     <form action="" method="post">
                         <div class="form-row">
@@ -181,11 +121,6 @@ try{
                         <button type="submit" class="btn btn-primary">Go</button>
                     </form>
 
-
-
-
-
-
                     <p>
                         <label for="svp_2">
             <input type="radio" name="svp" id="svp_2" value="1" onclick="review()" />
@@ -193,13 +128,6 @@ try{
                     </p>
 
                     <table id="infoshow">
-
-                        <!--
-<tr class="info"><td >lat</td><td id="id_ido"></td></tr>
-<tr class="info"><td>lng</td><td id="id_keido"></td></tr>
--->
-
-
                         <tr class="info">
                             <td>住所</td>
                             <td id="id_address"></td>
@@ -210,15 +138,6 @@ try{
                         </tr>
                     </table>
 
-
-
-                    <!--
-    <div id="floating-panel">
-    <input id="address" type="textbox" placeholder="住所か地名ね">
-    <input id="submit" type="button" value="検索">
-</div>
--->
-
                     <div class="row">
                         <div class="col-xs-4">
                             <input type="text" id="address" class="form-control" placeholder="住所か地名ね">
@@ -228,7 +147,6 @@ try{
 
                     <br>
 
-
                     <!-- 地図の埋め込み表示 -->
                     <div id="map"></div>
                     <!-- ストリートビュー表示 -->
@@ -236,10 +154,8 @@ try{
 
                 </div>
                 <!--hero-->
-
             </div>
             <!--hero-container-->
-
         </div>
         <!--hero-background-->
 
@@ -279,7 +195,6 @@ try{
   ================================================== -->
 
         <div class="footer">
-
             <div class="container">
                 <div class="row">
 
@@ -292,14 +207,11 @@ try{
                     <!--webscope-->
 
                     <div class="col-sm-2">
-
                         <!--social-links-->
                     </div>
                     <!--social-links-parent-->
-
                 </div>
                 <!--row-->
-
             </div>
             <!--container-->
         </div>
@@ -307,8 +219,7 @@ try{
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-     <!--    <script src="assets/js/script.js"></script> -->
-        <script src="assets/js/navi.js"></script>
+        <script src="js/navi.js"></script>
 
         <script type="text/javascript">
             var map;
@@ -324,7 +235,7 @@ try{
                 /* 地図のオプション */
                 var myOptions = {
                     /*初期のズーム レベル */
-                    zoom: 10,
+                    zoom: 6,
                     /* 地図の中心 */
                     center: latlng,
                     /* 地図タイプ */
