@@ -18,31 +18,19 @@ var_dump($_SESSION['userID']);
 <head>
  <meta charset="utf-8" />
  <title>See</title>
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-   
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />   
     <meta name="Nova theme" content="width=device-width, initial-scale=1">
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
-    
-<!--    <link rel="stylesheet" href="css/responsive.css"/>-->
-
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-   
     <link rel="stylesheet" href="css/hero.css"/>
-
    <link rel="stylesheet" type="text/css" href="css/map_style.css">
-   
     <link rel="stylesheet" href="css/navi.css" />
     
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    
     <script type="text/javascript" src="js/footerFixed.js"></script>
-
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0jIuanGD4d4KNxkq2w4jbwxbQ0tMImXc"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </head>
@@ -75,49 +63,31 @@ var_dump($_SESSION['userID']);
   
   <div class="row">
 	<div class="col-xs-4 col-xs-offset-4">
-	
 		<input type="text" id="address" class="form-control" placeholder="住所か地名ね">
 	</div>
     <button type="button" id="submit" class="btn btn-primary">検索</button>
-      
 </div>
-  
-  
-  
-<!--
-  <div id="floating-panel">
-    <input id="address" type="textbox" placeholder="住所か地名ね">
-    <input id="submit" type="button" value="Geocode">
-</div>
--->
 
  <div id="gmap_wrapper">
   <div id="map_canvas"></div>
     </div>
-    
-    
+     
     <div id="footer" class="footer">
-
     <div class="container">
         <div class="row">
-
             <div class="col-sm-2"></div>
-
             <div class="col-sm-8 webscope">
                 <span class="webscope-text"> The world view by </span>
                 <a href=""> <img src="img/logo04.png"/> </a>
             </div>
             <!--webscope-->
-
             <div class="col-sm-2">
                 
                 <!--social-links-->
             </div>
             <!--social-links-parent-->
-
         </div>
         <!--row-->
-
     </div>
     <!--container-->
 </div>
