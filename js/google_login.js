@@ -81,7 +81,7 @@ function sendDb(userID, userName, userEmail, imageUrl){
              },
              function () {
               console.log('dbsave移動');
-             window.open('json_map.html');
+             window.open('json_map.php');
              }
               );
  });

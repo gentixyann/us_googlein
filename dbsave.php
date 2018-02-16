@@ -2,7 +2,6 @@
 session_start();
 
 
-
 // DBに接続
   require('dbconnect.php');
 
@@ -11,6 +10,8 @@ if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empt
    $nick_name = $_GET['userName'];
    $email = $_GET['userEmail'];
    $password = $_GET['userID'];
+
+   $_SESSION['userID'] = $_GET['userID'];
     
      try {
          $sql = "SELECT COUNT(*) as `cnt` FROM `whereis_members` WHERE `email`=?";
