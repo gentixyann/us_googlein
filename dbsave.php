@@ -7,11 +7,11 @@ session_start();
 
 if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empty($_GET["userEmail"]))
 {
-   $nick_name = $_GET['userName'];
-   $email = $_GET['userEmail'];
-   $password = $_GET['userID'];
+   $nick_name = $_GET["userName"];
+   $email = $_GET["userEmail"];
+   $password = $_GET["userID"];
 
-   $_SESSION['userID'] = $_GET['userID'];
+   //$_SESSION['userID'] = $_GET['userID'];
     
      try {
          $sql = "SELECT COUNT(*) as `cnt` FROM `whereis_members` WHERE `email`=?";
@@ -24,10 +24,14 @@ if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empt
  //件数とる
  $count = $stmt->fetch(PDO::FETCH_ASSOC);
          
+          //重複エラー
+     if ($count['cnt'] > 0) {
          
-         if ($count['cnt'] > 0) {
-  //重複エラー
-           
+//     $sql = "SELECT FROM `whereis_members` WHERE `email`=".$_GET["userEmail"];
+//    $stmt = $dbh->prepare($sql);
+//    $stmt->execute();
+//    $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
+             
  }else{
          
          
@@ -40,6 +44,10 @@ if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empt
         $data = array($nick_name,$email,sha1($password));
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
+         
+         //新規ログインのidをセッションidにする
+        $_SESSION["id"] = $dbh->lastInsertId('id');
+             
 
          }
 

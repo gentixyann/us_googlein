@@ -3,7 +3,7 @@ session_start();
 
 
 
-var_dump($_SESSION['userID']);
+var_dump($_SESSION['id']);
 
 
 
@@ -44,7 +44,7 @@ var_dump($_SESSION['userID']);
       <a href="index.php">Logout</a>
        <a href="#">Contact</a>
        
-       <?php if (isset($_SESSION["userID"])){ ?>
+       <?php if (isset($_SESSION["id"])){ ?>
        <a href="#">MyPage</a>
        <a href="post.php">POST</a>
        <?php } ?>

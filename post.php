@@ -6,7 +6,7 @@ require('dbconnect.php');
 
 if(isset($_POST) && !empty($_POST["lat"]) && !empty($_POST["lng"]) && !empty($_POST["iframe"]) && !empty($_POST["address"])){
   //trim関数 文字列の両端の空白を削除
-    $member_id = $_SESSION['userID'];
+    $member_id = $_SESSION["id"];
     $lat = trim($_POST['lat']);
      $lng = trim($_POST['lng']);
      $iframe = trim($_POST['iframe']);
@@ -38,7 +38,7 @@ if(isset($_POST) && !empty($_POST["lat"]) && !empty($_POST["lng"]) && !empty($_P
   }
 }
 
-
+var_dump($_SESSION["id"]);
 
 
 ?>
