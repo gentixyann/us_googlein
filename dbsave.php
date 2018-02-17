@@ -27,11 +27,14 @@ if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empt
           //重複エラー
      if ($count['cnt'] > 0) {
          
-//     $sql = "SELECT FROM `whereis_members` WHERE `email`=".$_GET["userEmail"];
-//    $stmt = $dbh->prepare($sql);
-//    $stmt->execute();
-//    $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
-             
+     $sql = "SELECT FROM `whereis_members` WHERE `email`=".$_GET["userEmail"];
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute();
+    $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
+         
+    
+     $_SESSION["id"] = $login_member["id"];
+         
  }else{
          
          

@@ -41,7 +41,7 @@ var_dump($_SESSION['id']);
        <a class="navbar-brand logo" href="#"></a>
        
     <div class=" topnav" id="myTopnav">
-      <a href="index.php">Logout</a>
+      <a href="logout.php">Logout</a>
        <a href="#">Contact</a>
        
        <?php if (isset($_SESSION["id"])){ ?>
