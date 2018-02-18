@@ -17,7 +17,7 @@ if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empt
          $sql = "SELECT COUNT(*) as `cnt` FROM `whereis_members` WHERE `email`=?";
          
          //sql文実行
- $data = array($_GET["userEmail"]);
+ $data = array($email);
  $stmt = $dbh->prepare($sql);
  $stmt->execute($data);
 
@@ -26,16 +26,18 @@ if(isset($_GET) && !empty($_GET["userID"]) && !empty($_GET["userName"]) && !empt
          
           //重複エラー
      if ($count['cnt'] > 0) {
+         // $_SESSION["id"] = $count['cnt'];
          
-     $sql = "SELECT FROM `whereis_members` WHERE `email`=".$email;
+     $sql_member = "SELECT `id` FROM `whereis_members` WHERE `email`=?";
+         
     $data = array($email);
-    $stmt = $dbh->prepare($sql);
+    $stmt = $dbh->prepare($sql_member);
     $stmt->execute($data);
     $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
          
-    
-     $_SESSION["id"] = $login_member["id"];
-         
+    //mysqlでのuseridをセッションidにする     
+    $_SESSION["id"] = $login_member["id"];
+          
  }else{
          
          
