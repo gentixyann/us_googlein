@@ -35,7 +35,6 @@ var_dump($_SESSION['id']);
 
 
 <header>
-   
        <a class="navbar-brand logo" href="#"></a>
        
     <div class=" topnav" id="myTopnav">
@@ -48,7 +47,6 @@ var_dump($_SESSION['id']);
        <a class="active" href="#">*MAP*</a>
        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
-  
   </header>
 
 
