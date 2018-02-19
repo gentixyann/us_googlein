@@ -1,6 +1,46 @@
 <?php
 session_start();
 
+try{
+
+ //markerしてる人の情報とる
+    $sql = "SELECT * FROM `whereis_map` ";
+
+    //sql実行
+    //実行待ち
+    $stmt = $dbh->prepare($sql);
+    //実行
+    $stmt->execute();
+
+    $marker_info["Markers"] = array();
+     while (1) {
+
+          //PDOはPHP Data Objects FETCH_ASSOCは連想配列で取り出す意味
+     $marker_data = $stmt->fetch(PDO::FETCH_ASSOC);
+         $marker_info["Markers"][] = $marker_data;
+         
+         if ($marker_data == false){
+         break;//中断する
+     }else{
+         
+         
+        
+             
+    $json = json_encode($marker_info, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES); 
+        //var_dump($json);
+         
+         
+     
+   }
+     }
+
+//var_dump($json);
+
+}catch(Exception $e){
+
+  }
+
+
 
 
 var_dump($_SESSION['id']);
