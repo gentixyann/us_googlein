@@ -5,8 +5,6 @@ session_start();
 
 var_dump($_SESSION['id']);
 
-//var_dump($login_member);
-
 
 
 
