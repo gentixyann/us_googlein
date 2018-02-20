@@ -1,5 +1,6 @@
 <?php
 session_start();
+require('dbconnect.php');
 
 try{
 
@@ -21,16 +22,9 @@ try{
          
          if ($marker_data == false){
          break;//中断する
-     }else{
-         
-         
-        
-             
+     }else{            
     $json = json_encode($marker_info, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES); 
         //var_dump($json);
-         
-         
-     
    }
      }
 
@@ -130,26 +124,24 @@ var_dump($_SESSION['id']);
 
 <script type="text/javascript">
     
-   $(function(){
-  // JSONファイル読み込み開始
-  $.ajax({
-    url:"json/map.json",
-    cache:false,
-    dataType:"json",
-    success:function(json){
-      var data=jsonRequest(json);
-      initialize(data);
-    }
-  });
-});
+    $(function(){
+    var json = <?php echo $json ?>;
+    console.log(json);
 
+    var data=jsonRequest(json);
+    console.log(data);
+    initialize(data);
+    });
+    
    // JSONファイル読み込み完了
 function jsonRequest(json){
   var data=[];
-  if(json.Marker){
-    var n=json.Marker.length;
+    
+    //Markersはjsonデータ配列のMarkerのこと。配列の塊を全て読み込んで、その数を変数nにする。
+  if(json.Markers){
+    var n=json.Markers.length;
     for(var i=0;i<n;i++){
-      data.push(json.Marker[i]);
+      data.push(json.Markers[i]);
     }
   }
   return data;
@@ -159,7 +151,7 @@ function jsonRequest(json){
     
     
     
-    console = null; // warningを表示しないようnullで(ry
+//    console = null; // warningを表示しないようnullで(ry
   var currentInfoWindow = null;
   
   function createClickCallback(marker, infoWindow) {
@@ -175,12 +167,23 @@ function jsonRequest(json){
     
     var map;
      var marker = "";
-
+    var randomLat = Math.random()*140 - 70;   
+    var randomLng = Math.random()*360 - 180;
+    
+   
 // マップを生成して、複数のマーカーを追加
 function initialize(data/*Array*/){
   var op={
-    zoom:13,
-    center:new google.maps.LatLng(34.67347038699344,135.44394850730896),
+      
+    
+      
+    zoom:5,
+    //center:new google.maps.LatLng(34.67347038699344,135.44394850730896),
+      
+     center:new google.maps.LatLng(randomLat.toFixed(6),randomLng.toFixed(6)),
+      
+    
+    
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
    map=new google.maps.Map(document.getElementById("map_canvas"),op);
@@ -196,7 +199,7 @@ function initialize(data/*Array*/){
         
         var infoWindow = new google.maps.InfoWindow({
             content:'<div class="infoWindow">'+
-             '<p>'+dat.iframe+'</p>'+'<input type="text class=comment">'+
+             '<p>'+dat.movie_info+'</p>'+'<input type="text class=comment">'+
              '</div>'
         });
         
@@ -222,6 +225,12 @@ function initialize(data/*Array*/){
             (geolocationDiv); 
       
 }
+    
+    
+   
+    
+    
+    
 // ]]>
      //住所検索の関数
          function geocodeAddress(geocoder, resultsMap){
@@ -315,8 +324,7 @@ function initialize(data/*Array*/){
          handleLocationError(false, map.getCenter());
             }
 }
-
-        
+    
 </script>
 
  <script src="js/navi.js"></script>
