@@ -3,7 +3,6 @@ session_start();
 require('dbconnect.php');
 
 try{
-
  //markerしてる人の情報とる
     $sql = "SELECT * FROM `whereis_map` ";
 
@@ -34,13 +33,7 @@ try{
 
   }
 
-
-
-
 var_dump($_SESSION['id']);
-
-
-
 
 ?>
 
@@ -64,7 +57,6 @@ var_dump($_SESSION['id']);
     <script type="text/javascript" src="js/footerFixed.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0jIuanGD4d4KNxkq2w4jbwxbQ0tMImXc"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
 </head>
 
 
@@ -77,15 +69,11 @@ var_dump($_SESSION['id']);
        <a href="#">MyPage</a>
        <a href="post.php">POST</a>
        <?php } ?>
-       <a href="#">Contact</a>
+       <a href="contact.php">Contact</a>
        <a class="active" href="#">*MAP*</a>
        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
   </header>
-
-
-
-
 
 <body>
   
@@ -174,15 +162,11 @@ function jsonRequest(json){
 // マップを生成して、複数のマーカーを追加
 function initialize(data/*Array*/){
   var op={
-      
-    
-      
+        
     zoom:5,
     //center:new google.maps.LatLng(34.67347038699344,135.44394850730896),
       
      center:new google.maps.LatLng(randomLat.toFixed(6),randomLng.toFixed(6)),
-      
-    
     
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
@@ -199,6 +183,7 @@ function initialize(data/*Array*/){
         
         var infoWindow = new google.maps.InfoWindow({
             content:'<div class="infoWindow">'+
+            //dat.movie_infoはDBのカラム名
              '<p>'+dat.movie_info+'</p>'+'<input type="text class=comment">'+
              '</div>'
         });
@@ -223,12 +208,7 @@ function initialize(data/*Array*/){
             //現在地ボタン
             map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push
             (geolocationDiv); 
-      
 }
-    
-    
-   
-    
     
     
 // ]]>
@@ -249,12 +229,9 @@ function initialize(data/*Array*/){
                     map: resultsMap,
                     position: results[0].geometry.location,
                      zoom: 10
-                    
 //                    if(Marker){
 //                    Marker.setMap(null)
-//                };
-                                                    
-                                                    
+//                };                                                                  
                 });
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);

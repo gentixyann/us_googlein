@@ -73,8 +73,8 @@ var_dump($_SESSION["id"]);
        <a class="navbar-brand logo" href="#"></a>
        
     <div class=" topnav" id="myTopnav">
-      <a href="#">Logout</a>
-       <a href="#">Contact</a>
+      <a href="logout.php">Logout</a>
+       <a href="contact.php">Contact</a>
        <a href="#">MyPage</a>
        <a class="active" href="#">POST</a>
        <a href="json_map.php">*MAP*</a>
