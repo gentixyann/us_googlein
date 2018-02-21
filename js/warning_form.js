@@ -1,8 +1,10 @@
 
 $(function(){
 
-$("form").submit(function(){
-//$('#update').on('submit',function(e){
+//$("form").submit(function(){
+$('#update').on('click',function(e){
+//$("#update").submit(function(){
+    
 
 var err = 0;
 

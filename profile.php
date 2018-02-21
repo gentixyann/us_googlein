@@ -108,7 +108,7 @@ require('dbconnect.php');
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3 content-margin-top">
         <legend class="profile_title">Profile</legend>
-        <form id="update" method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
+        <form id="" method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
           <!-- Nick Name -->
           <div class="form-group">
             <label for="nick_name1" class="col-sm-3 control-label">Nick Name</label>
@@ -126,14 +126,14 @@ require('dbconnect.php');
           </div>
 
           <div class="submit_button">
-           <input id="" type="submit" class="btn btn-default" value="Update Profile">
+           <input id="update" type="submit" class="btn btn-default" value="Update Profile">
 
            <!-- <button class="preview btn btn-default" onclick="popup();"> -->
            <!-- </button> -->
           </div>
           <div class="submit_button">
-            <a href="changepw.html" class="btn btn-default">Change Password</a>
-            <!-- <input type="submit" class="btn btn-default" value="Change Password"> -->
+<!--            <a href="changepw.html" class="btn btn-default">Change Password</a>-->
+             <input type="submit" class="btn btn-default" value="Change Password"> 
           </div>
         </form>
       </div>
@@ -153,7 +153,7 @@ require('dbconnect.php');
 
                 <div> <?php echo $one_movie["movie_info"]; ?></div>
 
-                
+                <form id="delete" method="post">
                   <a><?php echo $one_movie["address"];?></a>
                   <!-- 投稿日時 -->
                   <a>
@@ -165,12 +165,9 @@ require('dbconnect.php');
                   echo $created_date;
                   ?>
                   </a><br>
-                    <input id="btn-delete"<?php echo $one_movie["id"]; ?> type="button" class="btn btn-default delete" value="削除" data-add="<?php echo $one_movie["address"];?>">
-                    <!-- <a href="profile.php?id=<?php  echo $one_movie["id"]; ?>"><input id="btn-delete" type="button" class="btn btn-default" value="削除"></a> -->
-
-
+                   <input id="btn-delete<?php echo $one_movie["id"];?>" type="button" class="btn btn-default delete" value="削除" data-add="<?php echo $one_movie["address"];?>">
                   <br><br>
-                
+                </form>
           </div>
         </div>
       </div>
@@ -192,7 +189,7 @@ require('dbconnect.php');
   </div>
 
   <script src="js/navi.js"> </script>
-             
+  <script src="js/warning_form.js"></script>             
   <!-- ポイント2つ -->
   <!-- form、inputにidをつける -->
   <!-- 関数でまとめる -->
@@ -249,11 +246,13 @@ require('dbconnect.php');
       });
     }
 
-        $(document).on('click', '#btn-delete', function(d) {
+        $(document).on('click', '.btn, .btn-default, .delete', function(d) {
          d.preventDefault();
-
+         
          console.log(d);
-          d_popup("aaaa");
+         console.log(d.target.id);
+         // console.log($('.btn, .btn-default, .delete').attr('data-add'));
+         d_popup($('#'+d.target.id).data('add'));
     });
 
     //Post Delete
@@ -305,8 +304,6 @@ require('dbconnect.php');
       });
     }
   </script>
-
-<script src="js/warning_form.js"></script>
 
 </body>
 </html>
