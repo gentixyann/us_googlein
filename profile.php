@@ -48,9 +48,9 @@ require('dbconnect.php');
         }
       }
 
-  if(isset($_GET["id"]) && !empty($_GET["id"])){
+  if(isset($_POST["delete"]) && !empty($_POST["delete"])){
 
-    $delete_movie = $_GET["id"];
+    $delete_movie = $one_movie["id"];
     
     $del_sql = "DELETE FROM `whereis_map` WHERE `id`=".$delete_movie;
     $del_stmt = $dbh->prepare($del_sql);
@@ -165,7 +165,7 @@ require('dbconnect.php');
                   echo $created_date;
                   ?>
                   </a><br>
-                   <input id="btn-delete<?php echo $one_movie["id"];?>" type="button" class="btn btn-default delete" value="削除" data-add="<?php echo $one_movie["address"];?>">
+                   <input id="btn-delete<?php echo $one_movie["id"];?>" name="delete" type="button" class="btn btn-default delete" value="削除" data-add="<?php echo $one_movie["address"];?>">
                   <br><br>
                 </form>
           </div>
@@ -202,7 +202,6 @@ require('dbconnect.php');
 
     // 関数で一つにまとめる
     function popup() {
-
       // optionsの中身を設定 = ボタンを押した時に出るダイアログ
       var options = {
         title: "プロフィール情報を変更しますか",
