@@ -66,7 +66,7 @@ var_dump($_SESSION['id']);
     <div class=" topnav" id="myTopnav">
        <?php if (isset($_SESSION["id"])){ ?>
        <a href="logout.php">Logout</a>
-       <a href="#">MyPage</a>
+       <a href="profile.php">MyPage</a>
        <a href="post.php">POST</a>
        <?php } ?>
        <a href="contact.php">Contact</a>
