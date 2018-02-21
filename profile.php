@@ -3,13 +3,7 @@ session_start();
 
 //DB接続
 require('dbconnect.php');
-var_dump($_SESSION["id"]);
-
-  // if (isset($_POST["id"]) && empty($_POST["nick_name"]) && $_GET["error"] == 1) {
-    
-  //   header("Location: profile.php?error=1");
-  //   exit();
-  // }
+//var_dump($_SESSION["id"]);
 
 
   $sql = "SELECT * FROM `whereis_members` WHERE `id`=".$_SESSION["id"];
@@ -28,7 +22,7 @@ var_dump($_SESSION["id"]);
     $ud_profile_stmt = $dbh->prepare($ud_profile_sql);
     $ud_profile_stmt->execute($ud_profile_data);
 
-    header("Location: profile.php?member_id".$_GET["member_id"]);
+    header("Location: profile.php?member_id".$_SESSION["id"]);
     exit();
   }
 
@@ -50,14 +44,9 @@ var_dump($_SESSION["id"]);
           break;
         }else{
           $whereis_map[] = $one_movie;
-       // echo '<pre>';
-         //var_dump($whereis_map);
-       // echo '</pre>';
+       
         }
       }
-       // echo '<pre>';
-       //   var_dump($one_movie);
-       // echo '</pre
 
   if(isset($_GET["id"]) && !empty($_GET["id"])){
 
@@ -106,11 +95,11 @@ var_dump($_SESSION["id"]);
 <header>
     <a class="navbar-brand logo" href="#"></a>
     <div class=" topnav" id="myTopnav">
-      <a href="index.html">Logout</a>
-      <a href="contact.html">Contact</a>
+      <a href="logout.php">Logout</a>
+      <a href="contact.php">Contact</a>
       <a class="active" href="profile.html">MyPage</a>
-      <a href="post.html">POST</a>
-      <a href="json_map.html">*MAP*</a>
+      <a href="post.php">POST</a>
+      <a href="json_map.php">*MAP*</a>
       <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
 </header>
@@ -181,7 +170,7 @@ var_dump($_SESSION["id"]);
 
 
                   <br><br>
-                </form>
+                
           </div>
         </div>
       </div>
