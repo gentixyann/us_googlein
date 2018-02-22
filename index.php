@@ -67,15 +67,7 @@ function trans($word,$lang){
     <div class="container">
         <div class="header-container header">
             <div class="header-right">
-                <a class="navbar-item" href="contact.html">Contact</a>
-            </div>
-        </div>
-        <!--end of navigation-->
-
-        <div class="hero row">
-            <div class="hero-right col-sm-6 col-sm-6">
-<?php echo trans("Menu",$lang); ?>
-<br>
+                <a class="navbar-item" href="contact.php">Contact</a>
 <a href="index.php?lang=ja">
     <?php echo trans("ja",$lang); ?>
 </a>
@@ -83,6 +75,12 @@ function trans($word,$lang){
     <?php echo trans("en",$lang); ?>
 </a>
 
+            </div>
+        </div>
+        <!--end of navigation-->
+
+        <div class="hero row">
+            <div class="hero-right col-sm-6 col-sm-6">
 
 <!--<h1 class="header-headline bold"> 世界の景色をお手軽に <br></h1>-->
 

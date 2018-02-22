@@ -38,6 +38,25 @@ if(isset($_POST) && !empty($_POST["lat"]) && !empty($_POST["lng"]) && !empty($_P
   }
 }
 
+
+var_dump($_SESSION["lang"]);
+
+if(isset($_SESSION["lang"])){
+    $lang = $_SESSION["lang"];
+
+function trans($word,$lang){
+  //翻訳ファイルを読み込み
+  require("lang/words_".$lang.".php");
+
+  //配列からデータを取得
+  $trans_word = $word_list[$word];
+
+  //文字を返す
+  return $trans_word;
+}
+}
+
+
 var_dump($_SESSION["id"]);
 
 
@@ -76,7 +95,7 @@ var_dump($_SESSION["id"]);
       <a href="logout.php">Logout</a>
        <a href="contact.php">Contact</a>
        <a href="profile.php">MyPage</a>
-       <a class="active" href="#">POST</a>
+       <a class="active" href="">POST</a>
        <a href="json_map.php">*MAP*</a>
        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>  
@@ -87,7 +106,7 @@ var_dump($_SESSION["id"]);
                 <div class="hero row">
                     <div class="row">
                         <div class="col-md-6">
-                            <h1>POST<small>ここで投稿して</small></h1>
+                            <h1>POST<small><?php echo trans("ここで投稿できるよ",$lang); ?></small></h1>
                         </div>
                         <div class="col-md-6">
                             <h1><a href="https://www.youtube.com" target="_blank"><img src="img/yt_logo.png" width="200" height="40"></a></h1>
@@ -97,16 +116,16 @@ var_dump($_SESSION["id"]);
                     <form action="" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="inputlat">lat (緯度)</label>
+                                <label for="inputlat"><?php echo trans("緯度",$lang); ?></label>
                                 <input type="text" id="map_lat" class="form-control" name="lat">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="inputlng"> lng (経度)</label>
+                                <label for="inputlng"><?php echo trans("経度",$lang); ?></label>
                                 <input type="text" id="map_lng" class="form-control" name="lng">
                             </div>
                         </div>
                         <div class="form-group col-md-12">
-                            <label for="inputiframe">iframe (動画コード)</label>
+                            <label for="inputiframe"><?php echo trans("動画埋め込みコード",$lang); ?></label>
                             <input type="text" class="form-control" name="iframe">
                         </div>
                         <input type="hidden" id="map_address" name="address">
@@ -116,7 +135,7 @@ var_dump($_SESSION["id"]);
                     <p>
                         <label for="svp_2">
             <input type="radio" name="svp" id="svp_2" value="1" onclick="review()" />
-            ストリートビューパノラマを表示</label>
+            <?php echo trans("ストリートビューパノラマを表示",$lang); ?></label>
                     </p>
 
                     <table id="infoshow">
@@ -128,9 +147,9 @@ var_dump($_SESSION["id"]);
 
                     <div class="row">
                         <div class="col-xs-4">
-                            <input type="text" id="address" class="form-control" placeholder="住所か地名ね">
+                            <input type="text" id="address" class="form-control" placeholder="<?php echo trans("住所か地名ね",$lang); ?>">
                         </div>
-                        <button type="button" id="submit" class="btn btn-primary">検索</button>
+                        <button type="button" id="submit" class="btn btn-primary"><?php echo trans("検索",$lang); ?></button>
                     </div>
 
                     <br>

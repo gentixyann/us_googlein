@@ -95,11 +95,9 @@ var_dump($_SESSION['id']);
   
   <div class="row">
 	<div class="col-xs-4 col-xs-offset-4">
-		<input type="text" id="address" class="form-control" placeholder="住所か地名ね">
+		<input type="text" id="address" class="form-control" placeholder="<?php echo trans("住所か地名ね",$lang); ?> ">
 	</div>
     <button type="button" id="submit" class="btn btn-primary"> <?php echo trans("検索",$lang); ?> </button>
-    <button type="button" id="submit" class="btn btn-primary"> 検索 </button>
-    
 </div>
 
  <div id="gmap_wrapper">
