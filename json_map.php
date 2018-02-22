@@ -27,11 +27,27 @@ try{
    }
      }
 
-//var_dump($json);
-
 }catch(Exception $e){
 
   }
+
+var_dump($_SESSION["lang"]);
+
+if(isset($_SESSION["lang"])){
+    $lang = $_SESSION["lang"];
+
+function trans($word,$lang){
+  //翻訳ファイルを読み込み
+  require("lang/words_".$lang.".php");
+
+  //配列からデータを取得
+  $trans_word = $word_list[$word];
+
+  //文字を返す
+  return $trans_word;
+}
+}
+
 
 var_dump($_SESSION['id']);
 
@@ -81,7 +97,9 @@ var_dump($_SESSION['id']);
 	<div class="col-xs-4 col-xs-offset-4">
 		<input type="text" id="address" class="form-control" placeholder="住所か地名ね">
 	</div>
-    <button type="button" id="submit" class="btn btn-primary">検索</button>
+    <button type="button" id="submit" class="btn btn-primary"> <?php echo trans("検索",$lang); ?> </button>
+    <button type="button" id="submit" class="btn btn-primary"> 検索 </button>
+    
 </div>
 
  <div id="gmap_wrapper">

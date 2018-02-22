@@ -8,9 +8,11 @@ session_start();
 $lang = "en";
 
 if (isset($_GET["lang"])){
-  $lang = $_GET["lang"];
+  $_SESSION["lang"] = $_GET["lang"];
+  $lang = $_SESSION["lang"];
 }
 
+var_dump($lang);
 
 function trans($word,$lang){
   //翻訳ファイルを読み込み
@@ -72,41 +74,30 @@ function trans($word,$lang){
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
-               
-               <?php echo trans("Menu",$lang); ?>
-
+<?php echo trans("Menu",$lang); ?>
 <br>
-<a href="index.php?lang=ja"><?php echo trans("ja",$lang); ?>
+<a href="index.php?lang=ja">
+    <?php echo trans("ja",$lang); ?>
 </a>
-<a href="index.php?lang=en"><?php echo trans("en",$lang); ?>
+<a href="index.php?lang=en">
+    <?php echo trans("en",$lang); ?>
 </a>
 
-               
-                <h1 class="header-headline bold"> 世界の景色をお手軽に <br></h1>
-                
-                <h1 class="header-headline bold"> <?php echo trans("世界の景色をお手軽に",$lang); ?> <br></h1>
-                
-                <h4 class="header-running-text light"> You can see so easy the view of the world. </h4>
+
+<!--<h1 class="header-headline bold"> 世界の景色をお手軽に <br></h1>-->
+
+<h1 class="header-headline bold">
+    <?php echo trans("世界の景色をお手軽に",$lang); ?> 
+    <br>
+    </h1>
+<!--<h4 class="header-running-text light"> You can see so easy the view of the world. </h4>-->
+           
+           
             </div>
 
             <form method="POST" action="">
                 <div class="col-sm-6 col-sm-6 ">
                     <div class="loginpanel">
-                       
-<!--
-                        <div class="txt">
-                            <input id="user6" type="text" placeholder="E-mail" name="login_email" />
-                            <label for="user" class="entypo-mail"></label>
-                        </div>
-                        <div class="txt">
-                            <input id="pwd7" type="password" placeholder="Password" name="login_password" />
-                            <label for="pwd" class="entypo-lock"></label>
-                        </div>
-                    <div class="buttons">
-                            <input type="submit" value="Login" />
-                        </div>
--->
-
                        
                         <a href="json_map.html" class="submit_button">
                   <input type="button" value="Visitor" class="submit_button">

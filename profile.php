@@ -3,14 +3,6 @@ session_start();
 
 //DB接続
 require('dbconnect.php');
-//var_dump($_SESSION["id"]);
-
-  // if (isset($_POST["id"]) && empty($_POST["nick_name"]) && $_GET["error"] == 1) {
-    
-  //   header("Location: profile.php?error=1");
-  //   exit();
-  // }
-
 
   $sql = "SELECT * FROM `whereis_members` WHERE `id`=".$_SESSION["id"];
   $stmt = $dbh->prepare($sql);
@@ -62,8 +54,6 @@ require('dbconnect.php');
     header("Location: profile.php?member_id".$_SESSION["id"]);
     exit();
   }
-
-
   }
   }
 
@@ -175,14 +165,7 @@ require('dbconnect.php');
                   <!-- <?php //if(isset($_GET["id"]) && !empty($_GET["id"])){}?> -->
                    <!--  <input id="btn-delete" name="delete" type="submit" class="btn btn-default delete" value="削除"  data-add="<?php echo $one_movie["<address></address>"];?>"> -->
 
-
-
-
-
                     <input name="delete" type="submit" class="delete" value="削除">
-
-                    <!-- <a href="profile.php?id=<?php // echo $one_movie["id"]; ?>"><input id="btn-delete" type="button" class="btn btn-default" value="削除"></a> -->
-
                   <br><br>
                 </form>
           </div>
@@ -206,12 +189,6 @@ require('dbconnect.php');
   </div>
 
   <script src="js/navi.js"> </script>
-
-  <!-- ポイント2つ -->
-  <!-- form、inputにidをつける -->
-  <!-- 関数でまとめる -->
-  <!-- Change Profile -->
-
 <script src="js/warning_form.js"></script>
 
 </body>
