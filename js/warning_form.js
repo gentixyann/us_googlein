@@ -1,10 +1,25 @@
 
 $(function(){
+$('.delete').click(function(){
+  
+  if(!confirm('まじで消すの？？')){
+    return false;
+  }else{
+    location.href = 'profile.php';
+  }
+});
+});
 
-//$("form").submit(function(){
+
+
+
+
+
+$(function(){
+
+// $("form").submit(function(){
+//$('#update').on('submit',function(e){
 $('#update').on('click',function(e){
-//$("#update").submit(function(){
-    
 
 var err = 0;
 

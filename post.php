@@ -75,7 +75,7 @@ var_dump($_SESSION["id"]);
     <div class=" topnav" id="myTopnav">
       <a href="logout.php">Logout</a>
        <a href="contact.php">Contact</a>
-       <a href="#">MyPage</a>
+       <a href="profile.php">MyPage</a>
        <a class="active" href="#">POST</a>
        <a href="json_map.php">*MAP*</a>
        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
