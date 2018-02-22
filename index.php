@@ -5,6 +5,24 @@ session_start();
 // DBに接続
   require('dbconnect.php');
 
+$lang = "en";
+
+if (isset($_GET["lang"])){
+  $lang = $_GET["lang"];
+}
+
+
+function trans($word,$lang){
+  //翻訳ファイルを読み込み
+  require("lang/words_".$lang.".php");
+
+  //配列からデータを取得
+  $trans_word = $word_list[$word];
+
+  //文字を返す
+  return $trans_word;
+}
+
 ?>
 
 
@@ -54,7 +72,20 @@ session_start();
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
+               
+               <?php echo trans("Menu",$lang); ?>
+
+<br>
+<a href="index.php?lang=ja"><?php echo trans("ja",$lang); ?>
+</a>
+<a href="index.php?lang=en"><?php echo trans("en",$lang); ?>
+</a>
+
+               
                 <h1 class="header-headline bold"> 世界の景色をお手軽に <br></h1>
+                
+                <h1 class="header-headline bold"> <?php echo trans("世界の景色をお手軽に",$lang); ?> <br></h1>
+                
                 <h4 class="header-running-text light"> You can see so easy the view of the world. </h4>
             </div>
 
