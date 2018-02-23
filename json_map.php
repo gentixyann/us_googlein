@@ -79,15 +79,16 @@ var_dump($_SESSION['id']);
 <header>
        <a class="navbar-brand logo" href="#"></a>
        
-    <div class=" topnav" id="myTopnav">
+    <div class=" topnav" id="myTopnav"> 
        <?php if (isset($_SESSION["id"])){ ?>
        <a href="logout.php">Logout</a>
        <a href="profile.php">MyPage</a>
        <a href="post.php">POST</a>
        <?php } ?>
+       <a href="help.php">Help</a>
        <a href="contact.php">Contact</a>
-       <a class="active" href="#">*MAP*</a>
-       <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
+       <a class="active" href="json_map.php">*MAP*</a>
+      <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
   </header>
 

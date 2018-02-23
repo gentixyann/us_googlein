@@ -1,7 +1,29 @@
+<?php
+session_start();
+
+
+if(isset($_SESSION["lang"])){
+    $lang = $_SESSION["lang"];
+
+function trans($word,$lang){
+  //翻訳ファイルを読み込み
+  require("lang/words_".$lang.".php");
+
+  //配列からデータを取得
+  $trans_word = $word_list[$word];
+
+  //文字を返す
+  return $trans_word;
+}
+}
+?>
+
+
+
+
+
+
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> 
 <html class="no-js" lang="ja"> <!--<![endif]-->
 <head>
@@ -76,11 +98,14 @@
 <header>
    <a class="navbar-brand logo" href="#"></a>
     <div class=" topnav" id="myTopnav"> 
-      <a href="index.html">Logout</a>
-      <a class="active" href="contact.html">Contact</a>
-      <a href="profile.html">MyPage</a>
-      <a href="post.html">POST</a>
-      <a href="json_map.html">*MAP*</a>
+       <?php if (isset($_SESSION["id"])){ ?>
+       <a href="logout.php">Logout</a>
+       <a href="profile.php">MyPage</a>
+       <a href="post.php">POST</a>
+       <?php } ?>
+       <a href="help.php">Help</a>
+       <a href="contact.php">Contact</a>
+       <a class="active" href="json_map.php">*MAP*</a>
       <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
 </header>

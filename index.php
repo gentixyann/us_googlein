@@ -10,7 +10,11 @@ $lang = "en";
 if (isset($_GET["lang"])){
   $_SESSION["lang"] = $_GET["lang"];
   $lang = $_SESSION["lang"];
+}else{
+    $_SESSION["lang"] =  $lang;
 }
+
+
 
 var_dump($lang);
 
