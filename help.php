@@ -33,10 +33,6 @@ function trans($word,$lang){
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>HELP</title>
-
-    <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
-    <!--Google Font link-->
-    
    
    
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -57,13 +53,19 @@ function trans($word,$lang){
 
 
     <script>
-         var map;
-         function initMap() {
-           map = new google.maps.Map(document.getElementById('map'), {
-           center: {lat: -34.397, lng: 150.644},
-           zoom: 8
-         });
-             }
+    //Google Maps
+    //initMapでMapを作っている
+      var map;
+      var randomLat = Math.random()*140 - 70;
+      var randomLng = Math.random()*360 - 180;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          //center: {lat: -34.397, lng: 150.644},
+          center: {lat: randomLat, lng: randomLng},
+          zoom: 3
+        });
+      }
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAL3qe_lcSnHCs7ENLJM9sMEHnxNABZb04&callback=initMap"
            async defer></script>
@@ -118,8 +120,7 @@ function trans($word,$lang){
           <div class="col-sm-6">
             <div class="head_title">
               <legend class="profile_title">HELP</legend>
-              <!--<h3>HELP    </h3>-->
-              <!--<div class="separator"></div>-->
+              
             </div>
                 <div class="single_choose">
                   <div class="single_choose_acording">
@@ -160,7 +161,7 @@ function trans($word,$lang){
                       <br>
                       ⑶投稿画面のマップクリックして、撮影地の緯度経度を調べて入れて<br>
                       ⑷youtubeでアップしたい動画を右クリック（マックなら両指クリックの事な）んだら選択肢に「動画コード取得」があると思うから、それクリックな。んだらそれがコピーされるんや<br>
-                      ⑸iframeの所に貼り付けて、GO や！
+                      ⑸動画埋め込みコードの所に貼り付けて、GO や！
                       </div>
                       </div>
                       </div>
@@ -178,7 +179,7 @@ function trans($word,$lang){
 
                       <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
                       <div class="panel-body">
-                      例えば、肖像権侵害と思われる動画を発見。通報と削除依頼をする場合は<u><a href="contact.html" style="display:inline">Contact Us</a></u> から申請をしてください。ただし、Youtubeから消えるわけではないのでご注意を。
+                      例えば、肖像権侵害と思われる動画を発見。通報と削除依頼をする場合は<u><a href="contact.php" style="display:inline">Contact Us</a></u> から申請をしてください。ただし、Youtubeから消えるわけではないのでご注意を。
                       </div>
                       </div>
                       </div>
@@ -209,51 +210,9 @@ function trans($word,$lang){
       </div>
     </div>
   </div>
-
-
-
-
-    <!-- START SCROLL TO TOP  -->
-<!--<div class="scrollup">
-        <a href="#"><i class="fa fa-chevron-up"></i></a>
-    </div> -->
-
-
-
-
-   
- 
-
+  
   <script src="js/jquery-1.11.2.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-
-   
-    <!-- <script src="assets/js/jquery.magnific-popup.js"></script> -->
-    <!-- <script src="assets/js/jquery.mixitup.min.js"></script> -->
-    <!-- <script src="assets/js/jquery.easing.1.3.js"></script> -->
-    <!-- <script src="assets/js/jquery.masonry.min.js"></script> -->
-
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script> -->
-    <!-- <script src="http://maps.google.com/maps/api/js"></script> -->
-    <!-- <script src="assets/js/gmaps.min.js"></script> -->
-
-<!-- 
-        <script>
-
-                                            function showmap() {
-                                                var mapOptions = {
-                                                    zoom: 8,
-                                                    scrollwheel: false,
-                                                    center: new google.maps.LatLng(-34.397, 150.644),
-                                                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                                                };
-                                                var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-                                            }
-        </script>
- -->
-        <!-- <script src="assets/js/plugins.js"></script> -->
-        <!-- <script src="assets/js/main.js"></script> -->
-
  <script src="js/navi.js"> </script>
 </body>
 </html>
