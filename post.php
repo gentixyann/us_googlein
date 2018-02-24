@@ -89,7 +89,7 @@ var_dump($_SESSION["id"]);
     <body>
         <div class="hero-background">
   <header>
-       <a class="navbar-brand logo" href="#"></a>
+       <a class="navbar-brand logo" href="index.php"></a>
        
     <div class=" topnav" id="myTopnav"> 
        <?php if (isset($_SESSION["id"])){ ?>

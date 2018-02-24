@@ -91,6 +91,8 @@ require('dbconnect.php');
 
 <header>
     <div class=" topnav" id="myTopnav"> 
+      <a class="navbar-brand logo" href="index.php"></a>
+      
        <?php if (isset($_SESSION["id"])){ ?>
        <a href="logout.php">Logout</a>
        <a href="profile.php">MyPage</a>

@@ -94,23 +94,18 @@ function trans($word,$lang){
 </div><!--end of header-->
 
         <div class="hero row">
-            <div class="hero-right col-sm-6 col-sm-6">
-
-
-<h1 class="header-headline bold">
-    <?php echo trans("世界の景色をお手軽に",$lang); ?> 
-    <br>
+<div class="hero-right col-sm-6 col-sm-6">
+    <h1 class="header-headline bold">
+        <?php echo trans("世界の景色をお手軽に",$lang); ?>
+        <br>
     </h1>
-<!--<h4 class="header-running-text light"> You can see so easy the view of the world. </h4>-->
-           
-           
-            </div>
+</div>
 
             <form method="POST" action="">
                 <div class="col-sm-6 col-sm-6 ">
                     <div class="loginpanel">
                        
-                        <a href="json_map.html" class="submit_button">
+                        <a href="json_map.php" class="submit_button">
                   <input type="button" value="Visitor" class="submit_button">
                   </a>
 
@@ -123,13 +118,11 @@ function trans($word,$lang){
                             <div>OR</div>
                             <div></div>
                         </div>
-                          
                                                                
                         <div class="social" style="">
                            
                             <div class="g-signin2" data-onsuccess="onSignIn" 
-                                 data-width=220 data-height="50"  data-longtitle="true"></div>
-                                                
+                                 data-width=220 data-height="50"  data-longtitle="true"></div>                  
                         </div>
                         
                     </div>
