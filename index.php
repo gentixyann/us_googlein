@@ -58,6 +58,19 @@ function trans($word,$lang){
 
     <!--    Goodleのアカウント使用で必要-->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    
+<style>
+    .g-signin2 {
+        width: 100%;
+    }
+
+    .g-signin2>div {
+        margin: 0 auto;
+    }
+</style>
+    
+    
+    
 </head>
 
 
@@ -65,28 +78,24 @@ function trans($word,$lang){
     <!-- Navigation
     ================================================== -->
 <div class="hero-background">
-
     <img class="strips" src="earth.png">
 
     <div class="container">
-        <div class="header-container header">
-            <div class="header-right">
-                <a class="navbar-item" href="contact.php">Contact</a>
-<a href="index.php?lang=ja">
-    <?php echo trans("ja",$lang); ?>
-</a>
-<a href="index.php?lang=en">
-    <?php echo trans("en",$lang); ?>
-</a>
-
-            </div>
-        </div>
-        <!--end of navigation-->
+<div class="header-container header">
+    <div class="header-right">
+        <a class="navbar-item" href="contact.php">Contact</a>
+        <a class="navbar-item" href="index.php?lang=ja">
+            <?php echo trans("ja",$lang); ?>
+        </a>
+        <a class="navbar-item" href="index.php?lang=en">
+            <?php echo trans("en",$lang); ?>
+        </a>
+    </div><!--end of header-right-->
+</div><!--end of header-->
 
         <div class="hero row">
             <div class="hero-right col-sm-6 col-sm-6">
 
-<!--<h1 class="header-headline bold"> 世界の景色をお手軽に <br></h1>-->
 
 <h1 class="header-headline bold">
     <?php echo trans("世界の景色をお手軽に",$lang); ?> 
@@ -114,10 +123,13 @@ function trans($word,$lang){
                             <div>OR</div>
                             <div></div>
                         </div>
-                                               
-                        <div class="social">
-                            <div class="g-signin2" data-onsuccess="onSignIn" data-width="320" 
-                                                      data-height="50" data-longtitle="true"></div>                        
+                          
+                                                               
+                        <div class="social" style="">
+                           
+                            <div class="g-signin2" data-onsuccess="onSignIn" 
+                                 data-width=220 data-height="50"  data-longtitle="true"></div>
+                                                
                         </div>
                         
                     </div>
