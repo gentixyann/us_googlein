@@ -17,7 +17,7 @@
          "⑴まずここでログイン必要やから"=>"⑴Login to our site.",
          "⑵youtubeアカウントある？まずそっちにアップして。え？それがそもそもわからんって？これ見てガンバー"=>"⑵Do you have a Youtube account? Upload the video after login Youtube. What? Seriously? You don't know how to upload on Youtube? See this and you can do it!",
          "⑶投稿画面のマップクリックして、撮影地の緯度経度を調べて入れて"=>"⑶ Click on the map at POST page, after that fill latitude and longitude in the location.",
-         "⑷youtubeでアップしたい動画を右クリック（マックなら両指クリックの事な）んだら選択肢に「動画コード取得」があると思うから、それクリックな。んだらそれがコピーされるんや"=>"⑷youtubeでアップしたい動画を右クリック（マックなら両指クリックの事な）んだら選択肢に「動画コード取得」があると思うから、それクリックな。んだらそれがコピーされるんや",
+         "⑷youtubeでアップしたい動画を右クリック（マックなら両指クリックの事な）んだら選択肢に「動画コード取得」があると思うから、それクリックな。んだらそれがコピーされるんや"=>"⑷Right click ",
          "⑸動画埋め込みコードの所に貼り付けて、GO や！"=>"⑸動画埋め込みコードの所に貼り付けて、GO や！",
          "例えば、肖像権侵害と思われる動画を発見。通報と削除依頼をする場合は"=>"If you feel that someone is infrinfing your portrait, you can report it to us from",
          "から申請をしてください。ただし、Youtubeから消えるわけではないのでご注意を。"=>"However, it doesn't remove from Youtube.");
