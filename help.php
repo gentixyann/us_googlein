@@ -138,8 +138,8 @@ function trans($word,$lang){
 
                       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: auto;">
                       <div class="panel-body">
-                      俺たちの遊び。<br>
-                      ここってどんなところなんやろー？もしかしたらその疑問に答えてくれるかもしれないもの。
+                       <?php echo trans("俺たちの遊び。",$lang); ?> <br>
+                      <?php echo trans("ここってどんなところなんやろー？もしかしたらその疑問に答えてくれるかもしれないもの。",$lang); ?> 
                       </div>
                       </div>
                       </div>
@@ -156,10 +156,11 @@ function trans($word,$lang){
 
                       <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
                       <div class="panel-body">
-                      ⑴まずここでログイン必要やから<br>
-                      ⑵youtubeアカウントある？まずそっちにアップして。え？それがそもそもわからんって？これ見てガンバー&nbsp;&nbsp;<u><a href="https://support.google.com/youtube/answer/161805?co=GENIE.Platform%3DDesktop&hl=ja" style="display:inline">Youtube Help</a></u>
+                     <?php echo trans("⑴まずここでログイン必要やから",$lang); ?> <br>
+                      <?php echo trans("⑵youtubeアカウントある？まずそっちにアップして。え？それがそもそもわからんって？これ見てガンバー",$lang); ?>&nbsp;&nbsp;<u>
+                      <a href="https://support.google.com/youtube/answer/57407?co=GENIE.Platform%3DDesktop&hl=en" target="_blank" style="display:inline">Youtube Help</a></u>
                       <br>
-                      ⑶投稿画面のマップクリックして、撮影地の緯度経度を調べて入れて<br>
+                       <?php echo trans("⑶投稿画面のマップクリックして、撮影地の緯度経度を調べて入れて",$lang); ?><br>
                       ⑷youtubeでアップしたい動画を右クリック（マックなら両指クリックの事な）んだら選択肢に「動画コード取得」があると思うから、それクリックな。んだらそれがコピーされるんや<br>
                       ⑸動画埋め込みコードの所に貼り付けて、GO や！
                       </div>
