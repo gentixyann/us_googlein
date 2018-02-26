@@ -11,6 +11,7 @@
          "緯度"=>"latitude",
          "経度"=>"longitude",
          "動画埋め込みコード"=>"embed code",
+          "住所"=>"address",
          "ストリートビューパノラマを表示"=>"show the street view panorama",
           "俺たちの遊び。"=>"Ah~ it's just our playfulness",
          "ここってどんなところなんやろー？もしかしたらその疑問に答えてくれるかもしれないもの。"=>"What is this place...? Maybe it can answer your question",
