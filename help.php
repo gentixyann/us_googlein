@@ -161,8 +161,8 @@ function trans($word,$lang){
                       <a href="https://support.google.com/youtube/answer/57407?co=GENIE.Platform%3DDesktop&hl=en" target="_blank" style="display:inline">Youtube Help</a></u>
                       <br>
                        <?php echo trans("⑶投稿画面のマップクリックして、撮影地の緯度経度を調べて入れて",$lang); ?><br>
-                      ⑷youtubeでアップしたい動画を右クリック（マックなら両指クリックの事な）んだら選択肢に「動画コード取得」があると思うから、それクリックな。んだらそれがコピーされるんや<br>
-                      ⑸動画埋め込みコードの所に貼り付けて、GO や！
+                      <?php echo trans("⑷youtubeでアップしたい動画を右クリック（マックなら両指クリックの事な）んだら選択肢に「動画コード取得」があると思うから、それクリックな。んだらそれがコピーされるんや",$lang); ?><br>
+                      <?php echo trans("⑸動画埋め込みコードの所に貼り付けて、GO や！",$lang); ?>
                       </div>
                       </div>
                       </div>

@@ -89,7 +89,7 @@ var_dump($_SESSION["id"]);
     <body>
         <div class="hero-background">
   <header>
-       <a class="navbar-brand logo" href="index.php"></a>
+       em
        
     <div class=" topnav" id="myTopnav"> 
        <?php if (isset($_SESSION["id"])){ ?>
@@ -143,7 +143,7 @@ var_dump($_SESSION["id"]);
 
                     <table id="infoshow">
                         <tr class="info">
-                            <td>住所</td>
+                            <td><?php echo trans("住所",$lang); ?></td>
                             <td id="id_address"></td>
                         </tr>
                     </table>
