@@ -180,7 +180,7 @@ function trans($word,$lang){
 
                       <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
                       <div class="panel-body">
-                      例えば、肖像権侵害と思われる動画を発見。通報と削除依頼をする場合は<u><a href="contact.php" style="display:inline">Contact Us</a></u> から申請をしてください。ただし、Youtubeから消えるわけではないのでご注意を。
+                      <?php echo trans("例えば、肖像権侵害と思われる動画を発見。通報と削除依頼をする場合は",$lang); ?><u><a href="contact.php" style="display:inline">Contact Us</a></u> <?php echo trans("から申請をしてください。ただし、Youtubeから消えるわけではないのでご注意を。",$lang); ?>
                       </div>
                       </div>
                       </div>

@@ -132,10 +132,6 @@ function trans($word,$lang){
     </div><!--end of container-->
 </div><!--end of hero-background-->
     
-    
-    
-    
-    
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     
 <script>
