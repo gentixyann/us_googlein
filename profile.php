@@ -3,6 +3,14 @@ session_start();
 
 //DB接続
 require('dbconnect.php');
+//var_dump($_SESSION["id"]);
+
+  // if (isset($_POST["id"]) && empty($_POST["nick_name"]) && $_GET["error"] == 1) {
+    
+  //   header("Location: profile.php?error=1");
+  //   exit();
+  // }
+
 
   $sql = "SELECT * FROM `whereis_members` WHERE `id`=".$_SESSION["id"];
   $stmt = $dbh->prepare($sql);
@@ -30,10 +38,10 @@ require('dbconnect.php');
   $movie_stmt = $dbh->prepare($movie_sql);
   $movie_stmt->execute($movie_data);
 
-       // var_dump($movie_sql);
-       // var_dump($movie_data);
+        //var_dump($movie_sql);
+        //var_dump($movie_data);
 
-  $whereis_map = array();
+     $whereis_map = array();
       while(1){
 
         $one_movie = $movie_stmt->fetch(PDO::FETCH_ASSOC);
@@ -43,19 +51,39 @@ require('dbconnect.php');
         }else{
           $whereis_map[] = $one_movie;
 
-  if(isset($_POST["delete"])){
+      }
 
-    $delete_movie = $one_movie["id"];
 
-    $del_sql = "DELETE FROM `whereis_map` WHERE `id`=".$delete_movie;
-    $del_stmt = $dbh->prepare($del_sql);
-    $del_stmt ->execute();
 
-    header("Location: profile.php?member_id".$_SESSION["id"]);
-    exit();
+
+
+        // if(isset($_POST["delete"])){
+        //   // var_dump(isset($_POST["delete"]))
+        //   $delete_movie = $whereis_map[0]["id"];
+
+        //   var_dump($delete_movie);
+
+
+        //   $del_sql = "DELETE FROM `whereis_map` WHERE `id`=".$delete_movie;
+        //   $del_stmt = $dbh->prepare($del_sql);
+        //   $del_stmt ->execute();
+
+        //   header("Location: profile.php?member_id".$_SESSION["id"]);
+        //   exit();
+        // }
+
+
   }
-  }
-  }
+
+   // var_dump($_POST);
+      if (!empty($_POST["delete"])) {
+        $del_sql = "DELETE FROM `whereis_map` WHERE `id`=".$_POST["delete"];
+          $del_stmt = $dbh->prepare($del_sql);
+          $del_stmt ->execute();
+
+          header("Location: profile.php?member_id".$_SESSION["id"]);
+          exit();
+      }
 
 ?>
 
@@ -90,17 +118,16 @@ require('dbconnect.php');
 <body>
 
 <header>
-    <div class=" topnav" id="myTopnav"> 
-      <a class="navbar-brand logo" href="index.php"></a>
-      
-       <?php if (isset($_SESSION["id"])){ ?>
+    <a class="navbar-brand logo" href="index.php"></a>
+    <div class=" topnav" id="myTopnav">
+     <?php if (isset($_SESSION["id"])){ ?>
        <a href="logout.php">Logout</a>
        <a href="profile.php">MyPage</a>
        <a href="post.php">POST</a>
        <?php } ?>
-       <a href="help.php">Help</a>
+       <a class="active" href="help.php">Help</a>
        <a href="contact.php">Contact</a>
-       <a class="active" href="json_map.php">*MAP*</a>
+       <a href="json_map.php">*MAP*</a>
       <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
 </header>
@@ -153,6 +180,7 @@ require('dbconnect.php');
               <br>
 
                 <div> <?php echo $one_movie["movie_info"]; ?></div>
+                <div> <?php echo $one_movie["id"]; ?></div>
 
                 <form id="delete" method="post">
                   <a><?php echo $one_movie["address"];?></a>
@@ -166,8 +194,17 @@ require('dbconnect.php');
                   echo $created_date;
                   ?>
                   </a><br>
+                  <!-- <?php //if(isset($_GET["id"]) && !empty($_GET["id"])){}?> -->
+                   <!--  <input id="btn-delete" name="delete" type="submit" class="btn btn-default delete" value="削除"  data-add="<?php echo $one_movie["<address></address>"];?>"> -->
 
-                    <input name="delete" type="submit" class="delete" value="削除">
+
+
+
+                    <input type="hidden" name="delete" value="<?php echo $one_movie["id"] ; ?>" >
+                    <input type="submit" class="delete" value="削除">
+
+                    <!-- <a href="profile.php?id=<?php // echo $one_movie["id"]; ?>"><input id="btn-delete" type="button" class="btn btn-default" value="削除"></a> -->
+
                   <br><br>
                 </form>
           </div>
@@ -191,6 +228,12 @@ require('dbconnect.php');
   </div>
 
   <script src="js/navi.js"> </script>
+
+  <!-- ポイント2つ -->
+  <!-- form、inputにidをつける -->
+  <!-- 関数でまとめる -->
+  <!-- Change Profile -->
+
 <script src="js/warning_form.js"></script>
 
 </body>
