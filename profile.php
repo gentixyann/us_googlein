@@ -141,7 +141,7 @@ require('dbconnect.php');
           <div class="form-group">
             <label for="nick_name1" class="col-sm-3 control-label">Nick Name</label>
             <div class="col-sm-8">
-              <input id="nick_name" type="text" name="nick_name" class="form-control" value="<?php echo $login_member["nick_name"]; ?>">
+              <p><?php echo $login_member["nick_name"]; ?></p>
             </div>
           </div>
 
@@ -149,7 +149,7 @@ require('dbconnect.php');
           <div class="form-group">
             <label class="col-sm-3 control-label">E-mail</label>
             <div class="col-sm-8">
-              <input type="email" name="email" class="form-control" value="<?php echo $login_member["email"]; ?>">
+              <p><?php echo $login_member["email"]; ?></p>
             </div>
           </div>
 
