@@ -102,8 +102,8 @@ require('dbconnect.php');
        <a href="post.php">POST</a>
        <?php } ?>
        <a href="help.php">Help</a>
-       <a href="contact.php">Contact</a>
-       <a class="active" href="json_map.php">*MAP*</a>
+       <a class="active" href="contact.php">Contact</a>
+       <a href="json_map.php">*MAP*</a>
       <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
 </header>
@@ -133,13 +133,7 @@ require('dbconnect.php');
                         <input type="email" name="email" class="form-control" placeholder="例：   ryotamura@nexseed.com" value="">
                       </div>
                   </div>
-                  <!-- Subject -->
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label">Subject</label>
-                      <div class="col-sm-8">
-                        <input type="text" name="subject" class="form-control" value="">
-                      </div>
-                  </div>
+                  
                   <!-- Message -->
                   <div class="form-group">
                     <div class="col-sm-11">

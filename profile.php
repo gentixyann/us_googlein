@@ -122,10 +122,10 @@ require('dbconnect.php');
     <div class=" topnav" id="myTopnav">
      <?php if (isset($_SESSION["id"])){ ?>
        <a href="logout.php">Logout</a>
-       <a href="profile.php">MyPage</a>
+       <a class="active" href="profile.php">MyPage</a>
        <a href="post.php">POST</a>
        <?php } ?>
-       <a class="active" href="help.php">Help</a>
+       <a href="help.php">Help</a>
        <a href="contact.php">Contact</a>
        <a href="json_map.php">*MAP*</a>
       <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
@@ -153,16 +153,6 @@ require('dbconnect.php');
             </div>
           </div>
 
-          <div class="submit_button">
-           <input id="update" type="submit" class="btn btn-default" value="Update Profile">
-
-           <!-- <button class="preview btn btn-default" onclick="popup();"> -->
-           <!-- </button> -->
-          </div>
-          <div class="submit_button">
-            <a href="changepw.html" class="btn btn-default">Change Password</a>
-            <!-- <input type="submit" class="btn btn-default" value="Change Password"> -->
-          </div>
         </form>
       </div>
    </div>
