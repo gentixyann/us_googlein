@@ -89,13 +89,6 @@ function trans($word,$lang){
     </style>
 </head>
 <body>
-<!-- <body data-spy="scroll" data-target=".navbar" data-offset="200"> -->
-<!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-<!--<div class='preloader'>
-        <div class='loaded'>&nbsp;</div>
-    </div> -->
 
 <header>
    <a class="navbar-brand logo" href="index.php"></a>
@@ -105,9 +98,9 @@ function trans($word,$lang){
        <a href="profile.php">MyPage</a>
        <a href="post.php">POST</a>
        <?php } ?>
-       <a href="help.php">Help</a>
+       <a class="active" href="help.php">Help</a>
        <a href="contact.php">Contact</a>
-       <a class="active" href="json_map.php">*MAP*</a>
+       <a href="json_map.php">*MAP*</a>
       <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
 </header>
