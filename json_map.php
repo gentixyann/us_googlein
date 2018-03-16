@@ -70,10 +70,9 @@ var_dump($_SESSION["id"]);
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 
-
 <header>
        <a class="navbar-brand logo" href="index.php"></a>
-       
+             
     <div class=" topnav" id="myTopnav"> 
        <?php if (isset($_SESSION["id"])){ ?>
        <a href="logout.php">Logout</a>
@@ -81,7 +80,6 @@ var_dump($_SESSION["id"]);
        <a href="post.php">POST</a>
        <?php } ?>
        <a href="help.php">Help</a>
-       <a href="contact.php">Contact</a>
        <a class="active" href="json_map.php">*MAP*</a>
       <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
@@ -105,9 +103,9 @@ var_dump($_SESSION["id"]);
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8 webscope">
-                <span class="webscope-text"> <a href="privacy_policy.html">Privacy Policy </a></span>
-                <span class="webscope-text"> <a href="terms_of_use.html">Team Of Use </a></span>
-                 <span class="webscope-text"> <a href="contact.php">Contact </a></span>
+                <a href="privacy_policy.html"> <span class="webscope-text">Privacy Policy </span></a>
+                <a href="terms_of_use.html"> <span class="webscope-text">Team Of Use </span></a>
+                <a href="contact.php"> <span class="webscope-text">Contact Us</span></a>
                 <span class="webscope-text"> The world view by </span>
                 <a href="json_map.php"> <img src="img/logo04.png"/> </a>
             </div>
