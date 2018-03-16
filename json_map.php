@@ -45,7 +45,7 @@ function trans($word,$lang){
   return $trans_word;
 }
 }
-
+var_dump($_SESSION["id"]);
 ?>
 
 
@@ -105,8 +105,11 @@ function trans($word,$lang){
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8 webscope">
+                <span class="webscope-text"> <a href="privacy_policy.html">Privacy Policy </a></span>
+                <span class="webscope-text"> <a href="terms_of_use.html">Team Of Use </a></span>
+                 <span class="webscope-text"> <a href="contact.php">Contact </a></span>
                 <span class="webscope-text"> The world view by </span>
-                <a href=""> <img src="img/logo04.png"/> </a>
+                <a href="json_map.php"> <img src="img/logo04.png"/> </a>
             </div>
             <!--webscope-->
             <div class="col-sm-2">

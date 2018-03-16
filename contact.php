@@ -12,17 +12,28 @@ require('dbconnect.php');
     $inquiries = $_POST["inquiries"];
     $member_id = $_SESSION['id'];
 
-    //if(!isset($error)){
+    
       $sql = "INSERT INTO `whereis_contact`(`member_id`, `nick_name`, `email`, `inquiries`, `created`) VALUES ($member_id, '$nick_name', '$email', '$inquiries', now())";
       $data = array($nick_name, $email, $inquiries);
       $stmt = $dbh->prepare($sql);
       $stmt->execute();
 
-      header("Location: contact.php");
+// $to      = 'kokogento@gmail.com';
+// $subject = 'title';
+// $message = 'body';
+// $headers = 'From: from@hoge.co.jp' . "\r\n";
 
-    //}
+// if(mail($to, $subject, $message, $headers)){
+//  echo "メールを送信しました";
+// }else{
+//   echo "メールの送信に失敗しました";
+// }
+
+
+header("Location: contact.php");
+
   }
-
+var_dump($_SESSION["id"]);
 
 ?>
 
@@ -37,12 +48,6 @@ require('dbconnect.php');
     <title>Contact Us</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <!--<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">-->
-    <!--link href="assets/css/form.css" rel="stylesheet">-->
-    <!--<link href="assets/css/timeline.css" rel="stylesheet">-->
-    <!-- <link href="css/profile_tmp.css" rel="stylesheet"> -->
-    <!-- <link href="css/profile.css" rel="stylesheet"> -->
-    <!--<link rel="styleseet" type="text/css" href="assets/css/bootstrap.css">-->
     <script type="text/javascript" src="js/footerFixed.js"></script>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -113,7 +118,6 @@ require('dbconnect.php');
       <section>
         <div class="col-xs-4">
           <div id="map"></div>
-             <!--<img src="https://res.cloudinary.com/lenadi07/image/upload/v1466697668/3_wtc6if.png" width="250" height="250"  />-->
         </div>
 
             <div class="col-xs-6">
@@ -123,14 +127,14 @@ require('dbconnect.php');
                   <div class="form-group">
                     <label class="col-sm-3 control-label">Your Name</label>
                       <div class="col-sm-8">
-                        <input type="text" name="nick_name" class="form-control" placeholder="例： Ryo Tamura"   value="">
+                        <input type="text" name="nick_name" class="form-control" placeholder=""   value="">
                       </div>
                   </div>
                   <!-- Email Address -->
                   <div class="form-group">
                     <label class="col-sm-3 control-label">E-mail</label>
                       <div class="col-sm-8">
-                        <input type="email" name="email" class="form-control" placeholder="例：   ryotamura@nexseed.com" value="">
+                        <input type="email" name="email" class="form-control" placeholder="" value="">
                       </div>
                   </div>
                   
@@ -170,11 +174,7 @@ require('dbconnect.php');
   </div>
 
  <script src="js/navi.js"> </script>
-   <!-- 問題 -->
-  <!-- ポイント2つ -->
-  <!-- form、inputにidをつける -->
-  <!-- 関数でまとめる -->
-  <!-- Change Profile -->
+  <script src="js/warn_contact.js"> </script>
   <script>
     $(document).on('click', '#btn-submit', function(e) {
          e.preventDefault();
