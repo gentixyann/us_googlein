@@ -23,10 +23,16 @@ margin:auto;
 }
 
 
-iframe{
-    width: 500px !important;
-    height: 280px !important;
+@media screen and (max-width: 480px){
+    iframe{
+    width: 280px;
+    height: 170px;
+}
 }
 
-.comment{
+@media screen and (min-width: 480px){
+    iframe{
+    width: 500px;
+    height: 280px;
+}
 }
