@@ -9,8 +9,8 @@ require('dbconnect.php');
 
     $nick_name = $_POST["nick_name"];
     $email = $_POST["email"];
-    $inquiries = $_POST["inquiries"];
     $title = $_POST["title"];
+    $inquiries = $_POST["inquiries"];
     $member_id = $_SESSION['id'];
 
     
@@ -20,17 +20,32 @@ require('dbconnect.php');
       $stmt = $dbh->prepare($sql);
       $stmt->execute();
 
-// $to      = 'kokogento@gmail.com';
-// $subject = 'title';
-// $message = 'body';
-// $headers = 'From: from@hoge.co.jp' . "\r\n";
 
-// if(mail($to, $subject, $message, $headers)){
-//  echo "メールを送信しました";
-// }else{
-//   echo "メールの送信に失敗しました";
-// }
-
+require('sendgrid.php');
+      
+      $FROM_EMAIL = $email;
+	// they dont like when it comes from @gmail, prefers business emails
+	$TO_EMAIL = 'wheview@gmail.com';
+	// Try to be nice. Take a look at the anti spam laws. In most cases, you must
+	// have an unsubscribe. You also cannot be misleading.
+	$subject = $title;
+	$from = new SendGrid\Email(null, $FROM_EMAIL);
+	$to = new SendGrid\Email(null, $TO_EMAIL);
+	$textContent = $inquiries;
+	// Create Sendgrid content
+	$content = new SendGrid\Content("text/plain",$textContent);
+	// Create a mail object
+	$mail = new SendGrid\Mail($from, $subject, $to, $content);
+	
+	$sg = new \SendGrid($API_KEY);
+	$response = $sg->client->mail()->send()->post($mail);
+			
+//	if ($response->statusCode() == 202) {
+//		// Successfully sent
+//		echo 'done';
+//	} else {
+//		echo 'false';
+//	}
 
 header("Location: contact.php");
 
