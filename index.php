@@ -55,7 +55,7 @@ function trans($word,$lang){
 
     <!--    Goodleのアカウント使用で必要-->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    
+
 <style>
     .g-signin2 {
         width: 100%;
@@ -65,9 +65,9 @@ function trans($word,$lang){
         margin: 0 auto;
     }
 </style>
-    
-    
-    
+
+
+
 </head>
 
 
@@ -79,15 +79,9 @@ function trans($word,$lang){
 
     <div class="container">
 <div class="header-container header">
-    <div class="header-right">
-        <a class="navbar-item" href="index.php?lang=ja">
-            <?php echo trans("ja",$lang); ?>
-        </a>
-        <a class="navbar-item" href="index.php?lang=en">
-            <?php echo trans("en",$lang); ?>
-        </a>
-    </div><!--end of header-right-->
-</div><!--end of header-->
+
+</div>
+<!--end of header-->
 
         <div class="hero row">
 <div class="hero-right col-sm-6 col-sm-6">
@@ -100,7 +94,7 @@ function trans($word,$lang){
             <form method="POST" action="">
                 <div class="col-sm-6 col-sm-6 ">
                     <div class="loginpanel">
-                       
+
                         <a href="json_map.php" class="submit_button">
                   <input type="button" value="Visitor" class="submit_button">
                   </a>
@@ -114,27 +108,27 @@ function trans($word,$lang){
                             <div>OR</div>
                             <div></div>
                         </div>
-                                                               
+
                         <div class="social" style="">
-                           
-                            <div class="g-signin2" data-onsuccess="onSignIn" 
-                                 data-width=220 data-height="50"  data-longtitle="true"></div>                  
+
+                            <div class="g-signin2" data-onsuccess="onSignIn"
+                                 data-width=220 data-height="50"  data-longtitle="true"></div>
                         </div>
-                        
+
                     </div>
-                </div>        
+                </div>
             </form>
         </div><!--end of hero row-->
     </div><!--end of container-->
 </div><!--end of hero-background-->
-    
+
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-    
+
 <script>
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyDVezH32ZycwFc8mHGYyhQgK0ovBgX1WGY",
-    //apiKey: "AIzaSyDStsWYUik9kLI-hbkIPQxSsBX-X-smIlw",  
+    //apiKey: "AIzaSyDStsWYUik9kLI-hbkIPQxSsBX-X-smIlw",
     authDomain: "where-map-e3a10.firebaseapp.com",
     databaseURL: "https://where-map-e3a10.firebaseio.com",
     projectId: "where-map-e3a10",
