@@ -58,51 +58,52 @@ function trans($word,$lang){
 <!doctype html>
 <html lang="ja">
 <head>
- <meta charset="utf-8" />
- <title>See</title>
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
+    <title>See</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta name="Nova theme" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="css/hero.css"/>
-   <link rel="stylesheet" type="text/css" href="css/map_style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" type="text/css" href="css/map_style.css">
     <link rel="stylesheet" href="css/navi.css" />
+    <link rel="stylesheet" href="css/searchAddress.css" />
 
     <script type="text/javascript" src="js/footerFixed.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0jIuanGD4d4KNxkq2w4jbwxbQ0tMImXc"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0jIuanGD4d4KNxkq2w4jbwxbQ0tMImXc&libraries=places"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0jIuanGD4d4KNxkq2w4jbwxbQ0tMImXc&libraries=places"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 
+
+
+
 <div id="inr">
-			<a href="json_map.php?lang=ja"><img src="img/btn_03.png" width="60" height="15" alt="Japanese"></a>|
-			<a href="json_map.php?lang=en"><img src="img/btn_04.png" width="52" height="15" alt="English"></a>
+    <a href="json_map.php?lang=ja"><img src="img/btn_03.png" width="60" height="15" alt="Japanese"></a>|
+    <a href="json_map.php?lang=en"><img src="img/btn_04.png" width="52" height="15" alt="English"></a>
 </div>
 
 <header>
-       <a class="navbar-brand logo" href="index.php"></a>
+    <a class="navbar-brand logo" href="index.php"></a>
 
     <div class=" topnav" id="myTopnav">
-       <?php if (isset($_SESSION["id"])){ ?>
-       <a href="logout.php">Logout</a>
-       <a href="profile.php">MyPage</a>
-       <a href="post.php">POST</a>
-       <?php } ?>
-       <a href="help.php">Help</a>
-       <a class="active" href="json_map.php">*MAP*</a>
-      <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
+        <?php if (isset($_SESSION["id"])){ ?>
+        <a href="logout.php">Logout</a>
+        <a href="profile.php">MyPage</a>
+        <a href="post.php">POST</a>
+        <?php } ?>
+        <a href="help.php">Help</a>
+        <a class="active" href="json_map.php">*MAP*</a>
+        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
-  </header>
+</header>
 
 <body>
-  <div class="row">
-	<div class="col-xs-4 col-xs-offset-4">
-		<input type="text" id="address" class="form-control" placeholder="<?php echo trans("住所か地名ね",$lang); ?> ">
-	</div>
-    <button type="button" id="submit" class="btn btn-primary"> <?php echo trans("検索",$lang); ?> </button>
+<div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+        <input id="pac-input" class="controls" type="text" placeholder="Search">
+    </div>
 </div>
 
  <div id="gmap_wrapper">
@@ -161,8 +162,6 @@ function jsonRequest(json){
 
 
 
-
-
 //    console = null; // warningを表示しないようnullで(ry
   var currentInfoWindow = null;
 
@@ -177,28 +176,28 @@ function jsonRequest(json){
     };
   }
 
-    var map;
-     var marker = "";
-    var randomLat = Math.random()*140 - 70;
-    var randomLng = Math.random()*360 - 180;
-
-
+    var map; 
+    var marker = ""; 
+    var randomLat = Math.random()*140 - 70; 
+    var randomLng = Math.random()*360 - 180; 
+    var input = document.getElementById('pac-input'); 
+    var searchBox = new google.maps.places.SearchBox(input);
 
 // マップを生成して、複数のマーカーを追加
 function initialize(data/*Array*/){
+
+//この変数がmapのoption
   var op={
-
-    zoom:5,
+    zoom:8,
     //center:new google.maps.LatLng(34.67347038699344,135.44394850730896),
-
      center:new google.maps.LatLng(randomLat.toFixed(6),randomLng.toFixed(6)),
-
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
+
+//基本となるマップのobject
    map=new google.maps.Map(document.getElementById("map_canvas"),op);
 
   var i=data.length;
-
     while(i-- >0){
         var dat = data[i];
         var marker=new google.maps.Marker({
@@ -212,60 +211,74 @@ function initialize(data/*Array*/){
              '<p>'+dat.movie_info+'</p>'+
              '</div>'
         });
-
          google.maps.event.addListener(marker, 'click', createClickCallback(marker, infoWindow));
     }
 
      var geocoder = new google.maps.Geocoder();
-
             //createElementでdivを生成。
      var geolocationDiv = document.createElement('div');
             //GeolocationControlで現在地とる。jsのAPI
      var geolocationControl = new GeolocationControl(geolocationDiv, map);
 
-            //submit押すとgeocoder発動。住所検索する
-            document.getElementById('submit').addEventListener('click', function(){
-             geocodeAddress(geocoder, map);
+       //現在地ボタンをmapの中に表示
+      map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push
+      (geolocationDiv);
 
-
-            })
-
-            //現在地ボタン
-            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push
-            (geolocationDiv);
+      //住所検索のinputをmapの中に表示
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+      map.addListener('bounds_changed', function(){
+      searchAddress()
+   })
 }//end of initialize()
 
+//住所検索の関数
+function searchAddress(){
+        searchBox.setBounds(map.getBounds());
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
 
-// ]]>
-     //住所検索の関数
-         function geocodeAddress(geocoder, resultsMap){
-        var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
+          if (places.length == 0) {
+            return;
+          }
 
-            //検索が可能なら
-            if (status === google.maps.GeocoderStatus.OK) {
-                resultsMap.setCenter(results[0].geometry.location);
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
 
-                //２個目の検索マーカーを消す
-                if(marker)
-           	marker.setMap(null)
-
-                 marker = new google.maps.Marker({
-                    map: resultsMap,
-                    position: results[0].geometry.location,
-                     zoom: 10
-//                    if(Marker){
-//                    Marker.setMap(null)
-//                };
-                });
-            } else {
-                alert('Geocode was not successful for the following reason: ' + status);
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              //console.log("Returned place contains no geometry");
+              alert("Returned place contains no geometry");
+              return;
             }
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              title: place.name,
+              zoom: 15,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
         });
-    }
+}
 
-
-    function GeolocationControl(controlDiv, map) {
+  function GeolocationControl(controlDiv, map) {
 
     // Set CSS for the control button
     //createElementでdivを作る。その変数がcontrolUI。ボタンの箱作ってる
@@ -301,13 +314,10 @@ function initialize(data/*Array*/){
     google.maps.event.addDomListener(controlUI, 'click', geolocate);
 }
 
-              //現在地ボタン押した時のgeolocate
+    //現在地ボタン押した時のgeolocate
     function geolocate() {
-
     if (navigator.geolocation) {
-
         navigator.geolocation.getCurrentPosition(function (position) {
-
             var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
             // Create a marker and center map on user location
@@ -315,9 +325,9 @@ function initialize(data/*Array*/){
                 position: pos,
                 draggable: true,
                 animation: google.maps.Animation.DROP,
+                zoom: 12,
                 map: map
             });
-
             //座標をセット。１番目の引数には設定する中心座標
             map.setCenter(pos);
         });

@@ -72,68 +72,10 @@ function trans($word,$lang){
     <link rel="stylesheet" href="css/navi.css" />
 
     <script type="text/javascript" src="js/footerFixed.js"></script>
-
-
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0jIuanGD4d4KNxkq2w4jbwxbQ0tMImXc"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0jIuanGD4d4KNxkq2w4jbwxbQ0tMImXc&libraries=places"></script>
-
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-
-
-
-<style type="text/css">
-  .controls {
-        margin-top: 10px;
-        border: 1px solid transparent;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        height: 32px;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      }
-
-      #pac-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 300px;
-      }
-
-      #pac-input:focus {
-        border-color: #4d90fe;
-      }
-
-      .pac-container {
-        font-family: Roboto;
-      }
-
-      #type-selector {
-        color: #fff;
-        background-color: #4d90fe;
-        padding: 5px 11px 0px 11px;
-      }
-
-      #type-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-      #target {
-        width: 345px;
-</style>
-
 </head>
-
-
-
 
 <div id="inr">
 			<a href="json_map.php?lang=ja"><img src="img/btn_03.png" width="60" height="15" alt="Japanese"></a>|
@@ -158,9 +100,9 @@ function trans($word,$lang){
 <body>
   <div class="row">
 	<div class="col-xs-4 col-xs-offset-4">
-		
-     <input id="pac-input" class="controls" type="text" placeholder="Search">
+		<input type="text" id="address" class="form-control" placeholder="<?php echo trans("住所か地名ね",$lang); ?> ">
 	</div>
+    <button type="button" id="submit" class="btn btn-primary"> <?php echo trans("検索",$lang); ?> </button>
 </div>
 
  <div id="gmap_wrapper">
@@ -219,6 +161,8 @@ function jsonRequest(json){
 
 
 
+
+
 //    console = null; // warningを表示しないようnullで(ry
   var currentInfoWindow = null;
 
@@ -237,26 +181,24 @@ function jsonRequest(json){
      var marker = "";
     var randomLat = Math.random()*140 - 70;
     var randomLng = Math.random()*360 - 180;
-    var input = document.getElementById('pac-input');
-  var searchBox = new google.maps.places.SearchBox(input);
 
 
 
 // マップを生成して、複数のマーカーを追加
 function initialize(data/*Array*/){
-
-//この変数がmapのoption
   var op={
-    zoom:8,
+
+    zoom:5,
     //center:new google.maps.LatLng(34.67347038699344,135.44394850730896),
+
      center:new google.maps.LatLng(randomLat.toFixed(6),randomLng.toFixed(6)),
+
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
-
-//基本となるマップのobject
    map=new google.maps.Map(document.getElementById("map_canvas"),op);
 
   var i=data.length;
+
     while(i-- >0){
         var dat = data[i];
         var marker=new google.maps.Marker({
@@ -270,108 +212,31 @@ function initialize(data/*Array*/){
              '<p>'+dat.movie_info+'</p>'+
              '</div>'
         });
+
          google.maps.event.addListener(marker, 'click', createClickCallback(marker, infoWindow));
     }
 
      var geocoder = new google.maps.Geocoder();
+
             //createElementでdivを生成。
      var geolocationDiv = document.createElement('div');
             //GeolocationControlで現在地とる。jsのAPI
      var geolocationControl = new GeolocationControl(geolocationDiv, map);
 
             //submit押すとgeocoder発動。住所検索する
-      // document.getElementById('submit').addEventListener('click', function(){
-      // geocodeAddress(geocoder, map);
-      //       })
+            document.getElementById('submit').addEventListener('click', function(){
+             geocodeAddress(geocoder, map);
+
+
+            })
 
             //現在地ボタン
             map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push
             (geolocationDiv);
-
-   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-   map.addListener('bounds_changed', function(){
-    searchAddress()
-   })
 }//end of initialize()
 
 
-
-
-
-
-function searchAddress(){
-// Create the search box and link it to the UI element.
-  //  var input = document.getElementById('pac-input');
-  // var searchBox = new google.maps.places.SearchBox(input);
-  //  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-
-   // Bias the SearchBox results towards current map's viewport.
-        // map.addListener('bounds_changed', function() {
-        //   searchBox.setBounds(map.getBounds());
-        // });
-
-
-
-        searchBox.setBounds(map.getBounds());
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-
-          if (places.length == 0) {
-            return;
-          }
-
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-            marker.setMap(null);
-          });
-          markers = [];
-
-          // For each place, get the icon, name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              //console.log("Returned place contains no geometry");
-              alert("Returned place contains no geometry");
-              return;
-            }
-
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-              map: map,
-              title: place.name,
-              zoom: 10,
-              position: place.geometry.location
-            }));
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.fitBounds(bounds);
-        });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ]]>
      //住所検索の関数
          function geocodeAddress(geocoder, resultsMap){
         var address = document.getElementById('address').value;
@@ -389,21 +254,15 @@ function searchAddress(){
                     map: resultsMap,
                     position: results[0].geometry.location,
                      zoom: 10
+//                    if(Marker){
+//                    Marker.setMap(null)
+//                };
                 });
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
         });
     }
-
-
-
-
-
-
-
-
-    
 
 
     function GeolocationControl(controlDiv, map) {
@@ -444,8 +303,11 @@ function searchAddress(){
 
               //現在地ボタン押した時のgeolocate
     function geolocate() {
+
     if (navigator.geolocation) {
+
         navigator.geolocation.getCurrentPosition(function (position) {
+
             var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
             // Create a marker and center map on user location
@@ -453,9 +315,9 @@ function searchAddress(){
                 position: pos,
                 draggable: true,
                 animation: google.maps.Animation.DROP,
-                zoom: 12,
                 map: map
             });
+
             //座標をセット。１番目の引数には設定する中心座標
             map.setCenter(pos);
         });
