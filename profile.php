@@ -164,40 +164,37 @@ require('dbconnect.php');
   <div class="row">
       <?php foreach ($whereis_map as $one_movie) { ?>
       <div class="messages-table">
+
         <div class="messages text-center">
           <div class="messages-top">
-              <br>
 
+          <div class="adjust-box box-1x1">
+    <div class="inner">
+              <br>
                 <div> <?php echo $one_movie["movie_info"]; ?></div>
                 <div> <?php echo $one_movie["id"]; ?></div>
-
                 <form id="delete" method="post">
-                  <a><?php echo $one_movie["address"];?></a>
+                  <p><?php echo $one_movie["address"];?><p>
                   <!-- 投稿日時 -->
-                  <a>
-                  <?php
+                  <p><?php
                   $created_date = $one_movie["created"];
                   //strtotime 文字型のデータを日時型に変換できる
                   //(Y年m月d日 と記述することも可能)(H24時間表記、h12時間表記)
                   $created_date = date("Y-m-d H:i",strtotime($created_date));
                   echo $created_date;
-                  ?>
-                  </a><br>
-                  <!-- <?php //if(isset($_GET["id"]) && !empty($_GET["id"])){}?> -->
-                   <!--  <input id="btn-delete" name="delete" type="submit" class="btn btn-default delete" value="削除"  data-add="<?php echo $one_movie["<address></address>"];?>"> -->
-
-
-
-
+                  ?></p>
+                  
                     <input type="hidden" name="delete" value="<?php echo $one_movie["id"] ; ?>" >
-                    <input type="submit" class="delete" value="削除">
 
-                    <!-- <a href="profile.php?id=<?php // echo $one_movie["id"]; ?>"><input id="btn-delete" type="button" class="btn btn-default" value="削除"></a> -->
-
+                     <button type="submit" class="delete btn btn-default">delete</button>
+                    <!-- <input type="submit" class="delete" value="delete"> -->
                   <br><br>
                 </form>
           </div>
         </div>
+      </div>
+
+      </div>
       </div>
       <?php }?>
   </div>
