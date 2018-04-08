@@ -246,7 +246,7 @@ function trans($word,$lang){
       map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
       map.addListener('bounds_changed', function(){
       searchAddress()
-   })
+     })
         
         //地図上でクリックするとマーカー登場。マーカーを移動可能にするイベント登録
         google.maps.event.addListener(map, 'click',
@@ -328,19 +328,12 @@ function trans($word,$lang){
                             status);
                     }
                 });
-
-            //submit押されるとgeocodeAddresse関数発動
-            document.getElementById('submit').addEventListener('click', function() {
-                geocodeAddress(geocoder, map);
-            });
         }
 
         //HTMLtag更新
         function infotable(ido, keido, level) {
-
             //document.getElementById('id_ido').innerHTML = ido;
             //document.getElementById('id_keido').innerHTML = keido;
-
         };
 
         var geocoder = new google.maps.Geocoder();
@@ -353,12 +346,7 @@ function trans($word,$lang){
         //現在地ボタン
         map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(geolocationDiv);
 
-    } //end of initialize()
-    
-    
-    
-    
-    
+    } //end of initialize()   
     
     //住所検索の関数
 function searchAddress(){
@@ -407,7 +395,7 @@ function searchAddress(){
         });
 }
 
-    function GeolocationControl(controlDiv, map) {
+function GeolocationControl(controlDiv, map) {
 
         //createElementでdivを作る。その変数がcontrolUI。ボタンの箱作ってる
         var controlUI = document.createElement('div');
@@ -441,8 +429,7 @@ function searchAddress(){
     }
 
     //現在地ボタン押した時のgeolocate
-    function geolocate() {
-
+function geolocate() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
 
@@ -464,11 +451,9 @@ function searchAddress(){
             //Geolocation API使えん
             handleLocationError(false, map.getCenter());
         }
-    }
+}
 
-
-
-    function review() {
+function review() {
         var objname = (chk()) ? "svp" : "map";
         if (objname == "map") {
             document.getElementById("svp").style.display = "none";
@@ -481,9 +466,9 @@ function searchAddress(){
                 position: map.getCenter()
             });
         map.setStreetView(svp);
-    }
+      }
     //チェック
-    function chk() {
+function chk() {
         var obj = document.getElementsByName("svp");
         for (var i = 0; i < obj.length; i++) {
             if (obj[i].checked) {
