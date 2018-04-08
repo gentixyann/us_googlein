@@ -58,34 +58,30 @@ function trans($word,$lang){
 
 ?>
 
+ <html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>post</title>
+    <meta name="Nova theme" content="width=device-width, initial-scale=1">
 
-    <html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-    <head>
-        <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/post.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/navi.css" />
+    <link rel="stylesheet" href="css/searchAddress.css" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>post</title>
-        <meta name="Nova theme" content="width=device-width, initial-scale=1">
+    <!-- Google Maps API読み込み -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0jIuanGD4d4KNxkq2w4jbwxbQ0tMImXc&libraries=places"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-        <link rel="stylesheet" href="css/post.css" />
-        <link rel="stylesheet" href="css/hero.css" />
-        <link rel="stylesheet" href="css/navi.css" />
-
-        <!-- Google Maps APIの読み込み -->
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZAIM1bSjO2lOUlrRBsNt4sQ-xmAItFaU"></script>
-
-    </head>
-
-    <body>
-        <div class="hero-background">
-  <header>
-       
+<body>
+ <div class="hero-background">
+  <header> 
     <div class=" topnav" id="myTopnav"> 
        <?php if (isset($_SESSION["id"])){ ?>
        <a href="logout.php">Logout</a>
