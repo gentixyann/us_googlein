@@ -258,13 +258,14 @@ function searchAddress(){
               alert("Returned place contains no geometry");
               return;
             }
-
+            
             // Create a marker for each place.
             markers.push(new google.maps.Marker({
               map: map,
               title: place.name,
-              zoom: 15,
+              //zoom: 15,
               position: place.geometry.location
+              
             }));
 
             if (place.geometry.viewport) {
@@ -275,6 +276,7 @@ function searchAddress(){
             }
           });
           map.fitBounds(bounds);
+          map.setZoom(15);
         });
 }
 
@@ -325,11 +327,12 @@ function searchAddress(){
                 position: pos,
                 draggable: true,
                 animation: google.maps.Animation.DROP,
-                zoom: 12,
+                //zoom: 12,
                 map: map
             });
             //座標をセット。１番目の引数には設定する中心座標
             map.setCenter(pos);
+            map.setZoom(15);
         });
     }else {
                //Geolocation API使えん

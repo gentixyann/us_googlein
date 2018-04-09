@@ -167,7 +167,6 @@ require('dbconnect.php');
 
         <div class="messages text-center">
           <div class="messages-top">
-
           <div class="adjust-box box-1x1">
     <div class="inner">
               <br>
