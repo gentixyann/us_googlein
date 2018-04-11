@@ -109,12 +109,14 @@ function trans($word,$lang){
                             <div></div>
                         </div>
 
-                        <div class="social" style="">
-
+                        <div id="smaho">
+                        <div class="social">
+                        
                             <div class="g-signin2" data-onsuccess="onSignIn"
                                  data-width=240 data-height="50"  data-longtitle="true"></div>
+                      
                         </div>
-
+                        </div>
                     </div>
                 </div>
             </form>
@@ -143,7 +145,7 @@ function trans($word,$lang){
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
     <script type="text/javascript" src="js/google_login.js"></script>
-    <script src="js/login.js"></script>
+  <!--   <script src="js/login.js"></script> -->
     <script src="js/script.js"></script>
 
 </body>
