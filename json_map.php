@@ -176,11 +176,11 @@ function jsonRequest(json){
     };
   }
 
-    var map; 
-    var marker = ""; 
-    var randomLat = Math.random()*140 - 70; 
-    var randomLng = Math.random()*360 - 180; 
-    var input = document.getElementById('pac-input'); 
+    var map;
+    var marker = "";
+    var randomLat = Math.random()*140 - 70;
+    var randomLng = Math.random()*360 - 180;
+    var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
 
 // マップを生成して、複数のマーカーを追加
@@ -204,13 +204,13 @@ function initialize(data/*Array*/){
             position:new google.maps.LatLng(dat.lat,dat.lng),
             map:map
         });
-
         var infoWindow = new google.maps.InfoWindow({
             content:'<div class="infoWindow">'+
             //dat.movie_infoはDBのカラム名
              '<p>'+dat.movie_info+'</p>'+
              '</div>'
         });
+
          google.maps.event.addListener(marker, 'click', createClickCallback(marker, infoWindow));
     }
 
@@ -258,14 +258,14 @@ function searchAddress(){
               alert("Returned place contains no geometry");
               return;
             }
-            
+
             // Create a marker for each place.
             markers.push(new google.maps.Marker({
               map: map,
               title: place.name,
               //zoom: 15,
               position: place.geometry.location
-              
+
             }));
 
             if (place.geometry.viewport) {
@@ -304,7 +304,7 @@ function searchAddress(){
     controlText.style.margin = '2px';
 	controlText.style.width = '28px';
     controlText.style.height = '28px';
-    controlText.style.backgroundImage = 'url(img/gps10.png)';   
+    controlText.style.backgroundImage = 'url(img/gps10.png)';
     controlText.style.backgroundSize = '17px 17px';
 	controlText.style.backgroundPosition = '4px 4px';
 	controlText.style.backgroundRepeat = 'no-repeat';

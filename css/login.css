@@ -5,7 +5,7 @@
   font-style: normal;
   font-weight: normal;
   src: url('https://weloveiconfonts.com/api/fonts/entypo/entypo.eot');
-  src: url('https://weloveiconfonts.com/api/fonts/entypo/entypo.eot?#iefix') format('eot'), url('http://weloveiconfonts.com/api/fonts/entypo/entypo.woff') format('woff'), url('http://weloveiconfonts.com/api/fonts/entypo/entypo.ttf') format('truetype'), url('http://weloveiconfonts.com/api/fonts/entypo/entypo.svg#entypo') format('svg');
+  /* src: url('https://weloveiconfonts.com/api/fonts/entypo/entypo.eot?#iefix') format('eot'), url('http://weloveiconfonts.com/api/fonts/entypo/entypo.woff') format('woff'), url('http://weloveiconfonts.com/api/fonts/entypo/entypo.ttf') format('truetype'), url('http://weloveiconfonts.com/api/fonts/entypo/entypo.svg#entypo') format('svg'); */
 }
 
 
@@ -894,7 +894,7 @@ body {
   transition: all 0s;
 }
 div.loginpanel {
-  
+
   width: 100%;
   max-width: 500px;
   padding: 20px;
@@ -1252,7 +1252,7 @@ div.loginpanel div.hr div:last-child {
 
 
 div.kaiintouroku {
-  
+
   width: 100%;
   max-width: 500px;
   padding: 20px;
