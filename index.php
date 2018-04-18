@@ -146,7 +146,7 @@ function trans($word,$lang){
 
     <script type="text/javascript" src="js/google_login.js"></script>
   <!--   <script src="js/login.js"></script> -->
-    <script src="js/script.js"></script>
+    <!-- <script src="js/script.js"></script> -->
 
 </body>
 
