@@ -75,25 +75,25 @@ function trans($word,$lang){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 
-
-
-
-<div id="inr">
-    <a href="json_map.php?lang=ja"><img src="img/btn_03.png" width="60" height="15" alt="Japanese"></a>|
-    <a href="json_map.php?lang=en"><img src="img/btn_04.png" width="52" height="15" alt="English"></a>
-</div>
-
-
 <body>
+  <div class="fullheight">
+
 <div class="row">
     <div class="col-xs-4 col-xs-offset-4">
         <input id="pac-input" class="controls" type="text" placeholder="Search">
     </div>
 </div>
 
+<div id="inr">
+    <a href="json_map.php?lang=ja"><img src="img/btn_03.png" width="60" height="15" alt="Japanese"></a>|
+    <a href="json_map.php?lang=en"><img src="img/btn_04.png" width="52" height="15" alt="English"></a>
+</div>
+
  <div id="gmap_wrapper">
   <div id="map_canvas"></div>
     </div>
+
+</div>
 
 
 
