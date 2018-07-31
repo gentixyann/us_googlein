@@ -71,7 +71,6 @@ function trans($word,$lang){
     <link rel="stylesheet" href="css/navi.css" />
     <link rel="stylesheet" href="css/searchAddress.css" />
 
-    <script type="text/javascript" src="js/footerFixed.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0jIuanGD4d4KNxkq2w4jbwxbQ0tMImXc&libraries=places"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
@@ -84,20 +83,6 @@ function trans($word,$lang){
     <a href="json_map.php?lang=en"><img src="img/btn_04.png" width="52" height="15" alt="English"></a>
 </div>
 
-<header>
-    <a class="navbar-brand logo" href="index.php"></a>
-
-    <div class=" topnav" id="myTopnav">
-        <?php if (isset($_SESSION["id"])){ ?>
-        <a href="logout.php">Logout</a>
-        <a href="profile.php">MyPage</a>
-        <a href="post.php">POST</a>
-        <?php } ?>
-        <a href="help.php">Help</a>
-        <a class="active" href="json_map.php">*MAP*</a>
-        <a href="javascript:void(0);" style="font-size:30px;" class="icon" onclick="myFunction()">&#9776;</a>
-    </div>
-</header>
 
 <body>
 <div class="row">
@@ -110,28 +95,7 @@ function trans($word,$lang){
   <div id="map_canvas"></div>
     </div>
 
-    <div id="footer" class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8 webscope">
-                <a href="privacy_policy.html"> <span class="webscope-text">Privacy Policy </span></a>
-                <a href="terms_of_use.html"> <span class="webscope-text">Team Of Use </span></a>
-                <a href="contact.php"> <span class="webscope-text">Contact Us</span></a>
-                <span class="webscope-text">  </span>
-                <!-- <a href="json_map.php"> <img src="img/logo04.png"/> </a> -->
-            </div>
-            <!--webscope-->
-            <div class="col-sm-2">
 
-                <!--social-links-->
-            </div>
-            <!--social-links-parent-->
-        </div>
-        <!--row-->
-    </div>
-    <!--container-->
-</div>
 
 
 
@@ -191,8 +155,7 @@ function initialize(data/*Array*/){
     zoom:8,
     //center:new google.maps.LatLng(34.67347038699344,135.44394850730896),
      center:new google.maps.LatLng(randomLat.toFixed(6),randomLng.toFixed(6)),
-     // １本指で操作できるようにする
-     // gestureHandling: 'greedy',
+     gestureHandling: 'greedy',
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
 
