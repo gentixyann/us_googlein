@@ -1,0 +1,96 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+/* line 7, ../sass/application.scss */
+*, *::before, *::after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 11, ../sass/application.scss */
+html, body {
+  background: #f1f1f1;
+  font-family: Roboto, Helvetica, sans-serif;
+}
+
+/* line 24, ../sass/application.scss */
+.material {
+  width: 100%;
+  height: 300px;
+  padding: 1em;
+  background: white;
+  position: relative;
+  text-align: center;
+  color: #4d4d4d;
+  -moz-box-shadow: 0 0 4px 2px rgba(80, 80, 80, 0.1);
+  -webkit-box-shadow: 0 0 4px 2px rgba(80, 80, 80, 0.1);
+  box-shadow: 0 0 4px 2px rgba(80, 80, 80, 0.1);
+  overflow: hidden;
+  -moz-transition: box-shadow 0.3s ease;
+  -o-transition: box-shadow 0.3s ease;
+  -webkit-transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
+}
+/* line 36, ../sass/application.scss */
+.material:hover {
+  -moz-box-shadow: 0 2px 4px 4px rgba(80, 80, 80, 0.2);
+  -webkit-box-shadow: 0 2px 4px 4px rgba(80, 80, 80, 0.2);
+  box-shadow: 0 2px 4px 4px rgba(80, 80, 80, 0.2);
+}
+/* line 42, ../sass/application.scss */
+.material .background {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 3em;
+  height: 3em;
+  -moz-transition: width 0.3s ease, height 0.3s ease, border-radius 0.4s ease, top 0.3s ease, left 0.3s ease;
+  -o-transition: width 0.3s ease, height 0.3s ease, border-radius 0.4s ease, top 0.3s ease, left 0.3s ease;
+  -webkit-transition: width 0.3s ease, height 0.3s ease, border-radius 0.4s ease, top 0.3s ease, left 0.3s ease;
+  transition: width 0.3s ease, height 0.3s ease, border-radius 0.4s ease, top 0.3s ease, left 0.3s ease;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+  background-position: center center;
+  background-size: cover;
+  -moz-box-shadow: 0 2px 4px 0px rgba(40, 40, 40, 0.4);
+  -webkit-box-shadow: 0 2px 4px 0px rgba(40, 40, 40, 0.4);
+  box-shadow: 0 2px 4px 0px rgba(40, 40, 40, 0.4);
+}
+/* line 58, ../sass/application.scss */
+.material .background.active {
+  width: 145%;
+  height: 145%;
+  left: 50%;
+  top: -20%;
+  z-index: 9;
+}
+/* line 65, ../sass/application.scss */
+.material .background1 {
+  background: #2196F3;
+  left: 30%;
+}
+/* line 70, ../sass/application.scss */
+.material .background2 {
+  background: #F44336;
+}
+/* line 74, ../sass/application.scss */
+.material .background3 {
+  background: #009688;
+  left: 70%;
+}
+
+/* line 80, ../sass/application.scss */
+.centered, .container {
+  width: 100%;
+  position: absolute;
+  /* top: 50%; */
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
