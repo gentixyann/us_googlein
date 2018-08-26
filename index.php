@@ -44,11 +44,12 @@ try{
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/hero.css" />
     <link rel="stylesheet" type="text/css" href="css/map_style.css">
     <link rel="stylesheet" href="css/searchAddress.css" />
-     <link rel="stylesheet" href="css/modal.css" />
+    <link rel="stylesheet" href="css/hamburger_menu.css" />
+    <link rel="stylesheet" href="css/modal.css" />
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0jIuanGD4d4KNxkq2w4jbwxbQ0tMImXc&libraries=places"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -65,19 +66,36 @@ try{
   <!--    end of sv modal-->
 
 <body>
-  <div class="fullheight">
-        <input id="pac-input" class="controls" type="text" placeholder="Search">
+<div class="fullheight">
+  <div class="popupModal1">
+   <input type="radio" name="modalPop" id="pop11" />
+   <label for="pop11">
+     <span class="fa-stack fa-lg">
+       <i class="fas fa-bars"></i>
+     </span>
+ </label>
 
-<div class="container">
-    <img data-toggle="modal" data-target="#Modal01" src="img/btn_03.png" width="52" height="15" alt="Japanese">
-    <img src="img/btn_04.png" width="52" height="15" alt="English">
-</div>
+   <input type="radio" name="modalPop" id="pop12" />
+   <label for="pop12">CLOSE</label>
+   <input type="radio" name="modalPop" id="pop13" />
+   <label for="pop13">×</label>
+   <div class="modalPopup2">
+    <div class="modalPopup3">
+     <div class="modalTitle">Cameraperson wanted</div>
+     <div class="modalMain">
+       <img id="facebook" src="img/f-ogo_RGB_HEX-58.png">
+      <img id="instagram" src="img/instagram_PNG9.png">
+      <img id="youtube" src="img/yt_logo.png">
+     </div>
+    </div>
+   </div>
+  </div>
 
+    <input id="pac-input" class="controls" type="text" placeholder="Search">
 
  <div id="gmap_wrapper">
   <div id="map_canvas"></div>
     </div>
-
 </div>
 
 
@@ -296,7 +314,6 @@ function searchAddress(){
 
 </script>
 
- <!-- <script src="js/map.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </body>
 </html>
