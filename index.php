@@ -40,15 +40,11 @@ try{
     <meta charset="utf-8" />
     <title>See</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta name="Nova theme" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/hero.css" />
-    <link rel="stylesheet" type="text/css" href="css/map_style.css">
+    <link rel="stylesheet" href="css/map_style.css">
     <link rel="stylesheet" href="css/searchAddress.css" />
-    <link rel="stylesheet" href="css/hamburger_menu.css" />
     <link rel="stylesheet" href="css/modal.css" />
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0jIuanGD4d4KNxkq2w4jbwxbQ0tMImXc&libraries=places"></script>
@@ -70,9 +66,9 @@ try{
   <div class="popupModal1">
    <input type="radio" name="modalPop" id="pop11" />
    <label for="pop11">
-     <span class="fa-stack fa-lg">
-       <i class="fas fa-bars"></i>
-     </span>
+     <!-- <span class="fa-stack fa-lg"> -->
+       <i class="fas fa-bars fa-lg"></i>
+     <!-- </span> -->
  </label>
 
    <input type="radio" name="modalPop" id="pop12" />
@@ -83,8 +79,8 @@ try{
     <div class="modalPopup3">
      <div class="modalTitle">Cameraperson wanted</div>
      <div class="modalMain">
-       <img id="facebook" src="img/f-ogo_RGB_HEX-58.png">
-      <img id="instagram" src="img/instagram_PNG9.png">
+       <a href="https://www.facebook.com/groups/wheview/" target="_blank"><img id="facebook" src="img/f-ogo_RGB_HEX-58.png"></a>
+       <a href="https://www.instagram.com/wheview/" target="_blank"><img id="instagram" src="img/instagram_PNG9.png"></a>
       <img id="youtube" src="img/yt_logo.png">
      </div>
     </div>
@@ -313,7 +309,6 @@ function searchAddress(){
 }
 
 </script>
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </body>
 </html>
