@@ -85,7 +85,7 @@ function trans($word,$lang){
 </div>
 
 <header>
-    <a class="navbar-brand logo" href="index.php"></a>
+  <a class="navbar-brand logo" href="login_google.php"></a>
 
     <div class=" topnav" id="myTopnav">
         <?php if (isset($_SESSION["id"])){ ?>
@@ -210,6 +210,7 @@ function initialize(data/*Array*/){
             content:'<div class="infoWindow">'+
             //dat.movie_infoはDBのカラム名
              '<p>'+dat.movie_info+'</p>'+
+             '<p>'+dat.id+'</p>'+
              '</div>'
         });
 

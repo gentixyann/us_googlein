@@ -37,14 +37,12 @@ function trans($word,$lang){
 
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="assets/css/magnific-popup.css"> -->
     <!--For Plugins external css-->
     <!-- <link rel="stylesheet" href="assets/css/plugins.css" /> -->
     <!--Theme custom css -->
     <link rel="stylesheet" href="css/help_style.css">
     <!--Theme Responsive css-->
     <link rel="stylesheet" href="css/help_responsive.css" >
-    <!-- <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script> -->
     <script type="text/javascript" src="js/footerFixed.js"></script>
         <!-- header -->
     <link rel="stylesheet" href="css/navi.css" />
@@ -89,7 +87,7 @@ function trans($word,$lang){
 <body>
 
 <header>
-   <a class="navbar-brand logo" href="index.php"></a>
+  <a class="navbar-brand logo" href="login_google.php"></a>
     <div class=" topnav" id="myTopnav">
        <?php if (isset($_SESSION["id"])){ ?>
        <a href="logout.php">Logout</a>

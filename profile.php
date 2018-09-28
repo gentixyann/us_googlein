@@ -6,7 +6,7 @@ require('dbconnect.php');
 //var_dump($_SESSION["id"]);
 
   // if (isset($_POST["id"]) && empty($_POST["nick_name"]) && $_GET["error"] == 1) {
-    
+
   //   header("Location: profile.php?error=1");
   //   exit();
   // }
@@ -38,41 +38,15 @@ require('dbconnect.php');
   $movie_stmt = $dbh->prepare($movie_sql);
   $movie_stmt->execute($movie_data);
 
-        //var_dump($movie_sql);
-        //var_dump($movie_data);
-
      $whereis_map = array();
       while(1){
-
         $one_movie = $movie_stmt->fetch(PDO::FETCH_ASSOC);
           //var_dump($one_movie);
         if($one_movie == false){
           break;
         }else{
           $whereis_map[] = $one_movie;
-
       }
-
-
-
-
-
-        // if(isset($_POST["delete"])){
-        //   // var_dump(isset($_POST["delete"]))
-        //   $delete_movie = $whereis_map[0]["id"];
-
-        //   var_dump($delete_movie);
-
-
-        //   $del_sql = "DELETE FROM `whereis_map` WHERE `id`=".$delete_movie;
-        //   $del_stmt = $dbh->prepare($del_sql);
-        //   $del_stmt ->execute();
-
-        //   header("Location: profile.php?member_id".$_SESSION["id"]);
-        //   exit();
-        // }
-
-
   }
 
    // var_dump($_POST);
@@ -84,6 +58,26 @@ require('dbconnect.php');
           header("Location: profile.php?member_id".$_SESSION["id"]);
           exit();
       }
+
+if (!empty($_POST["id"])) {
+  $id_search = $dbh->prepare("SELECT * FROM `whereis_map` WHERE `id`=".$_POST["id"]);
+  if($id_search->execute()){
+
+    var_dump($id_search);
+    //レコード件数取得
+    $row_count = $id_search->rowCount();
+    while($row = $id_search->fetch()){
+      $rows[] = $row;
+    }
+
+  }else{
+    $errors['error'] = "検索失敗しました。";
+  }
+
+}
+
+
+
 
 ?>
 
@@ -118,8 +112,8 @@ require('dbconnect.php');
 <body>
 
 <header>
-    <a class="navbar-brand logo" href="index.php"></a>
-    <div class=" topnav" id="myTopnav"> 
+  <a class="navbar-brand logo" href="login_google.php"></a>
+    <div class=" topnav" id="myTopnav">
        <?php if (isset($_SESSION["id"])){ ?>
        <a href="logout.php">Logout</a>
        <a class="active" href="profile.php">MyPage</a>
@@ -135,7 +129,15 @@ require('dbconnect.php');
     <div class="row">
       <div class="col-xs-6 col-xs-offset-3 content-margin-top">
         <legend class="profile_title">Profile</legend>
+
+        <form action="" method="post">
+        検索用語を入力：<input type="text" name="id">
+<input type="submit" value="検索する">
+</form>
+
+
         <form id="" method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
+
           <!-- Nick Name -->
           <div class="form-group">
             <label for="nick_name1" class="col-sm-3 control-label">Nick Name</label>
@@ -182,7 +184,7 @@ require('dbconnect.php');
                   $created_date = date("Y-m-d H:i",strtotime($created_date));
                   echo $created_date;
                   ?></p>
-                  
+
                     <input type="hidden" name="delete" value="<?php echo $one_movie["id"] ; ?>" >
 
                      <button type="submit" class="delete btn btn-default">delete</button>
