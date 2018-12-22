@@ -159,7 +159,8 @@ function initialize(data/*Array*/){
      panControl: false,
      zoomControl: false,
      streetViewControl: false,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
+    // mapTypeId:google.maps.MapTypeId.ROADMAP,
+    mapTypeId: 'hybrid'
   };
 
 //基本となるマップのobject
@@ -172,11 +173,23 @@ function initialize(data/*Array*/){
             position:new google.maps.LatLng(dat.lat,dat.lng),
             map:map
         });
+
+        var contentString = '<div class="content">'+
+            '<div class="bodyContent">'+
+            // '<p>'+dat.movie_info+'</p>'+
+            dat.movie_info
+            '</div>'+
+            '</div>';
+
         var infoWindow = new google.maps.InfoWindow({
-            content:'<div class="infoWindow">'+
+
+            content: contentString
+
+            //content:'<div class="infoWindow">'+
             //dat.movie_infoはDBのカラム名
-             '<p>'+dat.movie_info+'</p>'+
-             '</div>'
+            // '<p>'+dat.movie_info+'</p>'+
+             //'</div>'
+
         });
 
          google.maps.event.addListener(marker, 'click', createClickCallback(marker, infoWindow));

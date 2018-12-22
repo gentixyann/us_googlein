@@ -362,11 +362,13 @@ function trans($word,$lang){
 
 
     function geocodeLatLng(geocoder, map, infowindow) {
+
       // Clear out the old markers.
-      markers.forEach(function(marker) {
-        marker.setMap(null);
-      });
-      markers = [];
+      // markers.forEach(function(marker) {
+      //   marker.setMap(null);
+      // });
+      // markers = [];
+
         var input_lat = document.getElementById('map_lat').value;
         var input_lng = document.getElementById('map_lng').value;
 

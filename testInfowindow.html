@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info Windows</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+ /*style the box*/  
+         .gm-style .gm-style-iw {
+            /*top: 0 !important;*/
+            /*left: 0 !important;*/
+            /*right: 0!important;*/
+            /*width: 100% !important;*/
+            /*height: 100% !important;*/
+            min-width: 250px !important;
+            display: block !important;
+         }    
+     
+         /*style the p tag*/
+         .gm-style .gm-style-iw #content iframe{
+            /*padding-top: 5px;*/
+         }
+         
+     
+        /*style the arrow*/
+        .gm-style div div div div div div div div {
+            padding: 0;
+            margin: 0;
+            padding: 0;
+            top: 0;
+        }
+        
+        /*style the link*/
+        .gm-style div div div div div div div {
+            color: #f1f1f1;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          mapTypeId: 'satellite',
+          center: uluru
+        });
+
+        // var contentString = '<div id="content">'+
+        //     '<div id="siteNotice">'+
+        //     '</div>'+
+        //     '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+        //     '<div id="bodyContent">'+
+        //     '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/mFoGpqLzDXY?ecver=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        //     '</div>'+
+        //     '</div>';
+
+        var contentString = '<div id="content">'+
+            '<div id="bodyContent">'+
+            '<iframe src="https://www.youtube.com/embed/mFoGpqLzDXY?ecver=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+            '</div>'+
+            '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+          
+        });
+
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'Uluru (Ayers Rock)'
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZAIM1bSjO2lOUlrRBsNt4sQ-xmAItFaU&callback=initMap">
+    </script>
+  </body>
+</html>
