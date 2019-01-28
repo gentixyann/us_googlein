@@ -5,43 +5,22 @@ session_start();
 require('dbconnect.php');
 //var_dump($_SESSION["id"]);
 
-  // if (isset($_POST["id"]) && empty($_POST["nick_name"]) && $_GET["error"] == 1) {
-
-  //   header("Location: profile.php?error=1");
-  //   exit();
-  // }
-
-
   $sql = "SELECT * FROM `whereis_members` WHERE `id`=".$_SESSION["id"];
   $stmt = $dbh->prepare($sql);
   $stmt->execute();
-
   $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  // var_dump($login_member['id']);
-
-
-  if(isset($_POST["nick_name"]) && !empty($_POST["nick_name"]) || isset($_POST["email"]) && !empty($_POST["email"])){
-
-    $ud_profile_sql = "UPDATE `whereis_members` SET `nick_name`=?,`email`=? WHERE `id`=".$_SESSION["id"];
-    $ud_profile_data = array($_POST['nick_name'],$_POST['email']);
-    $ud_profile_stmt = $dbh->prepare($ud_profile_sql);
-    $ud_profile_stmt->execute($ud_profile_data);
-
-    header("Location: profile.php?member_id".$_SESSION["id"]);
-    exit();
-  }
-
-
-  $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC ";
+  // var_dump($login_member['id']); 動画表示のsql
+  // $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC ";
+  $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC LIMIT 2 ";
   $movie_data = array($login_member['id']);
   $movie_stmt = $dbh->prepare($movie_sql);
+  var_dump($movie_stmt);
   $movie_stmt->execute($movie_data);
-
      $whereis_map = array();
       while(1){
         $one_movie = $movie_stmt->fetch(PDO::FETCH_ASSOC);
-          //var_dump($one_movie);
+          // var_dump($one_movie);
         if($one_movie == false){
           break;
         }else{
@@ -49,32 +28,29 @@ require('dbconnect.php');
       }
   }
 
-   // var_dump($_POST);
+   // var_dump($_POST); 削除するsql
       if (!empty($_POST["delete"])) {
         $del_sql = "DELETE FROM `whereis_map` WHERE `id`=".$_POST["delete"];
           $del_stmt = $dbh->prepare($del_sql);
           $del_stmt ->execute();
-
           header("Location: profile.php?member_id".$_SESSION["id"]);
           exit();
       }
 
-if (!empty($_POST["id"])) {
-  $id_search = $dbh->prepare("SELECT * FROM `whereis_map` WHERE `id`=".$_POST["id"]);
-  if($id_search->execute()){
+    //ページャー
+//$pager_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]."limit".$offset.",".MOVIES_PER_PAGE." ORDER BY `created` DESC ";
+// if (isset($_GET['pageno'])) {
+//     $pageno = $_GET['pageno'];
+// } else {
+//     $pageno = 1;
+// }
+// $no_of_records_per_page = 10;
+// $offset = ($pageno-1) * $no_of_records_per_page;
+// $total_pages_sql = "SELECT COUNT(*) FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"];
+// $result = mysqli_query($conn,$total_pages_sql);
+// $total_rows = mysqli_fetch_array($result)[0];
+// $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-    var_dump($id_search);
-    //レコード件数取得
-    $row_count = $id_search->rowCount();
-    while($row = $id_search->fetch()){
-      $rows[] = $row;
-    }
-
-  }else{
-    $errors['error'] = "検索失敗しました。";
-  }
-
-}
 
 
 
@@ -130,14 +106,8 @@ if (!empty($_POST["id"])) {
       <div class="col-xs-6 col-xs-offset-3 content-margin-top">
         <legend class="profile_title">Profile</legend>
 
-        <form action="" method="post">
-        検索用語を入力：<input type="text" name="id">
-<input type="submit" value="検索する">
-</form>
-
 
         <form id="" method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
-
           <!-- Nick Name -->
           <div class="form-group">
             <label for="nick_name1" class="col-sm-3 control-label">Nick Name</label>
@@ -153,7 +123,6 @@ if (!empty($_POST["id"])) {
               <p><?php echo $login_member["email"]; ?></p>
             </div>
           </div>
-
         </form>
       </div>
    </div>
@@ -166,7 +135,6 @@ if (!empty($_POST["id"])) {
   <div class="row">
       <?php foreach ($whereis_map as $one_movie) { ?>
       <div class="messages-table">
-
         <div class="messages text-center">
           <div class="messages-top">
           <div class="adjust-box box-1x1">
@@ -194,11 +162,15 @@ if (!empty($_POST["id"])) {
           </div>
         </div>
       </div>
-
       </div>
       </div>
       <?php }?>
   </div>
+
+
+
+
+
 </div>
 
   <div id="footer" class="footer">
@@ -215,12 +187,6 @@ if (!empty($_POST["id"])) {
   </div>
 
   <script src="js/navi.js"> </script>
-
-  <!-- ポイント2つ -->
-  <!-- form、inputにidをつける -->
-  <!-- 関数でまとめる -->
-  <!-- Change Profile -->
-
 <script src="js/warning_form.js"></script>
 
 </body>
