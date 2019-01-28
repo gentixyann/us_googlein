@@ -4,6 +4,9 @@ session_start();
 //DB接続
 require('dbconnect.php');
 //var_dump($_SESSION["id"]);
+define('MOVIE_PAGE', 2);
+$page = 1;
+$offset = MOVIE_PAGE * ($page - 1);
 
   $sql = "SELECT * FROM `whereis_members` WHERE `id`=".$_SESSION["id"];
   $stmt = $dbh->prepare($sql);
@@ -12,10 +15,11 @@ require('dbconnect.php');
 
   // var_dump($login_member['id']); 動画表示のsql
   // $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC ";
-  $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC LIMIT 2 ";
+  // $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC LIMIT 2 ";
+  $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC LIMIT ".$offset." , " .MOVIE_PAGE;
+
   $movie_data = array($login_member['id']);
   $movie_stmt = $dbh->prepare($movie_sql);
-  var_dump($movie_stmt);
   $movie_stmt->execute($movie_data);
      $whereis_map = array();
       while(1){
@@ -38,19 +42,20 @@ require('dbconnect.php');
       }
 
     //ページャー
-//$pager_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]."limit".$offset.",".MOVIES_PER_PAGE." ORDER BY `created` DESC ";
-// if (isset($_GET['pageno'])) {
-//     $pageno = $_GET['pageno'];
-// } else {
-//     $pageno = 1;
-// }
-// $no_of_records_per_page = 10;
-// $offset = ($pageno-1) * $no_of_records_per_page;
-// $total_pages_sql = "SELECT COUNT(*) FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"];
-// $result = mysqli_query($conn,$total_pages_sql);
-// $total_rows = mysqli_fetch_array($result)[0];
-// $total_pages = ceil($total_rows / $no_of_records_per_page);
+    // GETで現在のページ数を取得する（未入力の場合は1を挿入）
+    if (isset($_GET['page'])) {
+    	$page = (int)$_GET['page'];
+    } else {
+    	$page = 1;
+    }
 
+    // スタートのポジションを計算する
+    if ($page > 1) {
+    	// 例：２ページ目の場合は、『(2 × 10) - 10 = 10』
+    	$start = ($page * 10) - 10;
+    } else {
+    	$start = 0;
+    }
 
 
 
@@ -106,7 +111,6 @@ require('dbconnect.php');
       <div class="col-xs-6 col-xs-offset-3 content-margin-top">
         <legend class="profile_title">Profile</legend>
 
-
         <form id="" method="post" action="" class="form-horizontal" role="form" enctype="multipart/form-data">
           <!-- Nick Name -->
           <div class="form-group">
@@ -115,7 +119,6 @@ require('dbconnect.php');
               <p><?php echo $login_member["nick_name"]; ?></p>
             </div>
           </div>
-
           <!-- Email Address -->
           <div class="form-group">
             <label class="col-sm-3 control-label">E-mail</label>
@@ -127,8 +130,6 @@ require('dbconnect.php');
       </div>
    </div>
  </div>
-
-
 
 <!-- 連想配列のキーがカラム名と同じものにテーブルのカラム名と同じものをかく予定）-->
 <div class="container">
