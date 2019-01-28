@@ -18,6 +18,13 @@ $offset = MOVIE_PAGE * ($page - 1);
   // $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC LIMIT 2 ";
   $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC LIMIT ".$offset." , " .MOVIE_PAGE;
 
+$total = $dbh->query("SELECT COUNT(*) FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"])->fetchColumn();
+$totalPages = ceil($total / MOVIE_PAGE);
+
+
+
+
+
   $movie_data = array($login_member['id']);
   $movie_stmt = $dbh->prepare($movie_sql);
   $movie_stmt->execute($movie_data);
@@ -42,20 +49,6 @@ $offset = MOVIE_PAGE * ($page - 1);
       }
 
     //ページャー
-    // GETで現在のページ数を取得する（未入力の場合は1を挿入）
-    if (isset($_GET['page'])) {
-    	$page = (int)$_GET['page'];
-    } else {
-    	$page = 1;
-    }
-
-    // スタートのポジションを計算する
-    if ($page > 1) {
-    	// 例：２ページ目の場合は、『(2 × 10) - 10 = 10』
-    	$start = ($page * 10) - 10;
-    } else {
-    	$start = 0;
-    }
 
 
 
@@ -167,10 +160,9 @@ $offset = MOVIE_PAGE * ($page - 1);
       </div>
       <?php }?>
   </div>
-
-
-
-
+<?php for ($i=1; $i<=$totalPages ; $i++) : ?>
+  <a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+<?php endfor; ?>
 
 </div>
 
