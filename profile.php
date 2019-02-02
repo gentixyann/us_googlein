@@ -4,26 +4,28 @@ session_start();
 //DB接続
 require('dbconnect.php');
 //var_dump($_SESSION["id"]);
-define('MOVIE_PAGE', 2);
-$page = 1;
-$offset = MOVIE_PAGE * ($page - 1);
+define('MOVIE_PAGE', 7);
+//$page = 1;
+
+if (preg_match('/^[1-9][0-9]*$/', $_GET['page'])) {
+  $page = (int)$_GET['page'];
+} else {
+  $page = 1;
+}
 
   $sql = "SELECT * FROM `whereis_members` WHERE `id`=".$_SESSION["id"];
   $stmt = $dbh->prepare($sql);
   $stmt->execute();
   $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$offset = MOVIE_PAGE * ($page - 1);
+
   // var_dump($login_member['id']); 動画表示のsql
   // $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC ";
-  // $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC LIMIT 2 ";
-  $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC LIMIT ".$offset." , " .MOVIE_PAGE;
+$movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC LIMIT ".$offset." , " .MOVIE_PAGE;
 
 $total = $dbh->query("SELECT COUNT(*) FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"])->fetchColumn();
 $totalPages = ceil($total / MOVIE_PAGE);
-
-
-
-
 
   $movie_data = array($login_member['id']);
   $movie_stmt = $dbh->prepare($movie_sql);
@@ -31,7 +33,7 @@ $totalPages = ceil($total / MOVIE_PAGE);
      $whereis_map = array();
       while(1){
         $one_movie = $movie_stmt->fetch(PDO::FETCH_ASSOC);
-          // var_dump($one_movie);
+           //var_dump($one_movie);
         if($one_movie == false){
           break;
         }else{
@@ -47,8 +49,6 @@ $totalPages = ceil($total / MOVIE_PAGE);
           header("Location: profile.php?member_id".$_SESSION["id"]);
           exit();
       }
-
-    //ページャー
 
 
 
@@ -146,11 +146,8 @@ $totalPages = ceil($total / MOVIE_PAGE);
                   $created_date = date("Y-m-d H:i",strtotime($created_date));
                   echo $created_date;
                   ?></p>
-
                     <input type="hidden" name="delete" value="<?php echo $one_movie["id"] ; ?>" >
-
                      <button type="submit" class="delete btn btn-default">delete</button>
-                    <!-- <input type="submit" class="delete" value="delete"> -->
                   <br><br>
                 </form>
           </div>
@@ -160,7 +157,8 @@ $totalPages = ceil($total / MOVIE_PAGE);
       </div>
       <?php }?>
   </div>
-<?php for ($i=1; $i<=$totalPages ; $i++) : ?>
+
+<?php for ($i=1; $i<=$totalPages; $i++) : ?>
   <a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
 <?php endfor; ?>
 
