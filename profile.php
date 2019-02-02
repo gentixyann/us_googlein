@@ -5,7 +5,6 @@ session_start();
 require('dbconnect.php');
 //var_dump($_SESSION["id"]);
 define('MOVIE_PAGE', 7);
-//$page = 1;
 
 if (preg_match('/^[1-9][0-9]*$/', $_GET['page'])) {
   $page = (int)$_GET['page'];
@@ -19,11 +18,9 @@ if (preg_match('/^[1-9][0-9]*$/', $_GET['page'])) {
   $login_member = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $offset = MOVIE_PAGE * ($page - 1);
-
   // var_dump($login_member['id']); 動画表示のsql
   // $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC ";
 $movie_sql = "SELECT * FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"]." ORDER BY `created` DESC LIMIT ".$offset." , " .MOVIE_PAGE;
-
 $total = $dbh->query("SELECT COUNT(*) FROM `whereis_map` WHERE `member_id`=".$_SESSION["id"])->fetchColumn();
 $totalPages = ceil($total / MOVIE_PAGE);
 
@@ -157,11 +154,19 @@ $totalPages = ceil($total / MOVIE_PAGE);
       </div>
       <?php }?>
   </div>
-
+<?php if ($page > 1) : ?>
+<a href="?page=<?php echo $page-1 ?>">Before</a>
+<?php endif; ?>
 <?php for ($i=1; $i<=$totalPages; $i++) : ?>
-  <a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+  <?php if ($page == $i) : ?>
+  <strong><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></strong>
+<?php else: ?>
+<a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+<?php endif; ?>
 <?php endfor; ?>
-
+<?php if ($page < $totalPages) : ?>
+<a href="?page=<?php echo $page+1 ?>">Next</a>
+<?php endif; ?>
 </div>
 
   <div id="footer" class="footer">
