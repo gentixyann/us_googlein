@@ -4,7 +4,7 @@ session_start();
 //DB接続
 require('dbconnect.php');
 //var_dump($_SESSION["id"]);
-define('MOVIE_PAGE', 7);
+define('MOVIE_PAGE', 10);
 
 if (preg_match('/^[1-9][0-9]*$/', $_GET['page'])) {
   $page = (int)$_GET['page'];
