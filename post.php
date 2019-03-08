@@ -235,7 +235,7 @@ function trans($word,$lang){
             /* 地図の中心 */
             center: latlng,
             /* 地図タイプ */
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: 'hybrid'
         };
         /* 地図オブジェクト */
         map = new google.maps.Map(document.getElementById("map"), myOptions);
